@@ -8,9 +8,10 @@ import {
   NavItem,
   NavLink,
 } from './BaseElements';
+
 import FirstTab from '../FirstTab';
 import SecondTab from '../SecondTab';
-import '../../css/style.css';
+import ThirdTab from '../ThirdTab';
 
 function Base() {
   return (
@@ -39,7 +40,8 @@ function Base() {
         </header>
         <main>
           {/* <FirstTab /> */}
-          <SecondTab />
+          {/* <SecondTab /> */}
+          <ThirdTab />
         </main>
       </FormBackground>
     </BodyBackground>

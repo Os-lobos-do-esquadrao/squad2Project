@@ -19,7 +19,7 @@ const SecondTab = () => {
           required
         />
       </BoxInput>
-      <Button style={{}}>Next</Button>
+      <Button>Next</Button>
     </form>
   );
 };
