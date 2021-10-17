@@ -39,9 +39,9 @@ function Base() {
           </Nav>
         </header>
         <main>
-          {/* <FirstTab /> */}
+          <FirstTab />
           {/* <SecondTab /> */}
-          <ThirdTab />
+          {/* <ThirdTab /> */}
         </main>
       </FormBackground>
     </BodyBackground>

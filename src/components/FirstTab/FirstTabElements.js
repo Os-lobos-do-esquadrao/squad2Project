@@ -30,6 +30,14 @@ export const BoxInputNumber = styled.div`
 `;
 
 export const InputNumber = styled.input.attrs({ type: 'number' })`
+  ::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  ::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
   background: #ffffff;
   border: 2px solid #aaaaaa;
   box-sizing: border-box;
