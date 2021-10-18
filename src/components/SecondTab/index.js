@@ -24,4 +24,4 @@ const SecondTab = () => {
   );
 };
 
-export default SecondTab;
+export default React.memo(SecondTab);

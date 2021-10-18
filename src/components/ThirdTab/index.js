@@ -56,4 +56,4 @@ const ThirdTab = () => {
   );
 };
 
-export default ThirdTab;
+export default React.memo(ThirdTab);

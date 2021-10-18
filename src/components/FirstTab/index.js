@@ -146,4 +146,4 @@ const FirstTab = () => {
     </form>
   );
 };
-export default FirstTab;
+export default React.memo(FirstTab);
