@@ -1,6 +1,6 @@
 //REACT
 import React, { useEffect, useState } from 'react';
-import { BoxInput, LabelText, InputText, Button } from '../base/BaseElements';
+import { BoxInput, LabelText, InputText, Button } from '../../assets/base';
 import {
   BoxEmailPhone,
   BoxEmail,
@@ -66,7 +66,7 @@ const FirstTab = () => {
   }
 
   return (
-    <form action="#">
+    <form action="#" style={{ border: '1px solid black' }}>
       <BoxInput>
         <LabelText for="FullName">Full Name *</LabelText>
         <InputText id="FullName" placeholder="Foo Bar" required />
