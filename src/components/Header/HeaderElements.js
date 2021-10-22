@@ -17,7 +17,6 @@ export const Nav = styled.nav`
   height: 48px;
   background-color: #ffffff;
   margin: 20px 0px 40px 0px;
-  border: 1px solid black;
 `;
 
 export const NavList = styled.ul`

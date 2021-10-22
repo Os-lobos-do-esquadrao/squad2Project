@@ -21,6 +21,11 @@ export const FormBackground = styled.div`
 
 //! Parte dos Inputs Genericos
 
+export const Form = styled.form`
+  height: 600px;
+  position: relative;
+`;
+
 export const LabelText = styled.label`
   /* font-size: 14px;
   line-height: 16px;
@@ -35,7 +40,8 @@ export const LabelText = styled.label`
 `;
 
 export const BoxInput = styled.div`
-  margin: 0px 0px 28px 0px;
+  margin: 0px 0px 48px 0px;
+  width: 100%;
 `;
 
 export const InputText = styled.input`
@@ -44,29 +50,32 @@ export const InputText = styled.input`
   box-sizing: border-box;
   border-radius: 4px;
   width: 100%;
-  height: 40px;
+  height: 45px;
   text-indent: 10px;
   display: block;
-  font-size: 16px;
+  font-size: 17px;
   font-family: 'Nunito', sans-serif;
   margin: 4px 0 0 0;
-  /* 48px */
 `;
 
 export const Button = styled.button.attrs({ type: 'submit' })`
+  position: absolute;
   display: flex;
   font-family: 'Nunito', sans-serif;
   justify-content: center;
   align-items: center;
   font-size: 16px;
   padding: 0px 12px;
-  line-height: 18px;
-  width: 81px;
-  height: 40px;
+  width: 85px;
+  height: 42px;
   background: #074ee8;
   border-radius: 4px;
   border: none;
   color: #ffffff;
-  margin: 41px 0 0px 426px;
+  bottom: 0;
+  right: 0;
   cursor: pointer;
+  p {
+    margin-right: auto;
+  }
 `;

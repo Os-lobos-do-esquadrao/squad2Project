@@ -1,9 +1,15 @@
 import React from 'react';
-import { BoxInput, LabelText, InputText, Button } from '../../assets/base';
+import {
+  Form,
+  BoxInput,
+  LabelText,
+  InputText,
+  Button,
+} from '../../assets/base';
 
 const SecondTab = () => {
   return (
-    <form action="#">
+    <Form action="#">
       <BoxInput>
         <LabelText for="Linkedin">Linkedin</LabelText>
         <InputText
@@ -20,7 +26,7 @@ const SecondTab = () => {
         />
       </BoxInput>
       <Button>Next</Button>
-    </form>
+    </Form>
   );
 };
 

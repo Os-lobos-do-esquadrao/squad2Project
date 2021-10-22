@@ -1,10 +1,19 @@
 //REACT
 import React, { useEffect, useState } from 'react';
-import { BoxInput, LabelText, InputText, Button } from '../../assets/base';
+import { useHistory } from 'react-router';
+
+import {
+  Form,
+  BoxInput,
+  LabelText,
+  InputText,
+  Button,
+} from '../../assets/base';
 import {
   BoxEmailPhone,
   BoxEmail,
   BoxPhone,
+  BirthdayBox,
   BirthdayTitle,
   BoxInputNumber,
   InputNumber,
@@ -13,7 +22,10 @@ import {
   LabelCheckbox,
 } from './FirstTabElements';
 
+import { ChevronRight } from 'react-feather';
+
 const FirstTab = () => {
+  let history = useHistory();
   const [state, setState] = useState({
     day: '',
     month: '',
@@ -21,12 +33,12 @@ const FirstTab = () => {
     age: '',
     phone: '',
   });
-
-  useEffect(() => {
-    if (state.day && state.month && state.year) {
-      setAge(`${state.year}/${state.month}/${state.day}`);
-    }
-  }, [state.day, state.month, state.year]);
+  const [check, setCheck] = useState(false);
+  // useEffect(() => {
+  //   if (state.day && state.month && state.year) {
+  //     setAge(`${state.year}/${state.month}/${state.day}`);
+  //   }
+  // }, [state.day, state.month, state.year]);
 
   const handleDay = (e) => {
     setState({ ...state, day: e.target.value });
@@ -49,24 +61,26 @@ const FirstTab = () => {
     setState({ ...state, phone: phone });
   };
 
-  function setAge(dateString) {
-    var today = new Date();
-    var birthDate = new Date(dateString);
-    var age = today.getFullYear() - birthDate.getFullYear();
-    var m = today.getMonth() - birthDate.getMonth();
-    console.log(m);
-    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
-      age--;
-    }
-    if (age >= 0 && age <= 110) {
-      setState({ ...state, age });
-    } else {
-      setState({ ...state, age: 'Invalid Age' });
+  function setAge() {
+    if (state.day && state.month && state.year) {
+      let dateString = `${state.year}/${state.month}/${state.day}`;
+      let today = new Date();
+      let birthDate = new Date(dateString);
+      let age = today.getFullYear() - birthDate.getFullYear();
+      let m = today.getMonth() - birthDate.getMonth();
+      if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+        age--;
+      }
+      if (age >= 0 && age <= 110) {
+        setState({ ...state, age });
+      } else {
+        setState({ ...state, age: 'Invalid Age' });
+      }
     }
   }
 
   return (
-    <form action="#" style={{ border: '1px solid black' }}>
+    <Form onSubmit={() => history.push('/social')}>
       <BoxInput>
         <LabelText for="FullName">Full Name *</LabelText>
         <InputText id="FullName" placeholder="Foo Bar" required />
@@ -74,7 +88,7 @@ const FirstTab = () => {
 
       <BoxInput>
         <LabelText for="Nickname">Nickname</LabelText>
-        <InputText id="Nickname" placeholder="Juanito" required />
+        <InputText id="Nickname" placeholder="Juanito" />
       </BoxInput>
 
       <BoxInput>
@@ -90,60 +104,78 @@ const FirstTab = () => {
               value={state.phone}
               id="Phone"
               placeholder="(83) 00000-0000"
-              required
             />
           </BoxPhone>
         </BoxEmailPhone>
       </BoxInput>
 
-      <BirthdayTitle>Birthday *</BirthdayTitle>
+      <BirthdayBox>
+        <BirthdayTitle>Birthday *</BirthdayTitle>
 
-      <BoxInputNumber>
-        <LabelText for="Day">Day</LabelText>
-        <InputNumber
-          value={state.day}
-          onChange={(e) => handleDay(e)}
-          id="Day"
-          placeholder="01"
-          required
-        />
-      </BoxInputNumber>
+        <BoxInputNumber>
+          <LabelText for="Day">Day</LabelText>
+          <InputNumber
+            value={state.day}
+            onChange={(e) => handleDay(e)}
+            onBlur={() => setAge()}
+            id="Day"
+            placeholder="01"
+            required
+          />
+        </BoxInputNumber>
 
-      <BoxInputNumber>
-        <LabelText for="Month">Month</LabelText>
-        <InputNumber
-          value={state.month}
-          onChange={(e) => handleMonth(e)}
-          id="Month"
-          placeholder="01"
-          required
-        />
-      </BoxInputNumber>
+        <BoxInputNumber>
+          <LabelText for="Month">Month</LabelText>
+          <InputNumber
+            value={state.month}
+            onChange={(e) => handleMonth(e)}
+            onBlur={() => setAge()}
+            id="Month"
+            placeholder="01"
+            required
+          />
+        </BoxInputNumber>
 
-      <BoxInputNumber>
-        <LabelText for="Year">Year</LabelText>
-        <InputNumber
-          value={state.year}
-          onChange={(e) => handleYear(e)}
-          id="Year"
-          placeholder="1910"
-          required
-        />
-      </BoxInputNumber>
+        <BoxInputNumber>
+          <LabelText for="Year">Year</LabelText>
+          <InputNumber
+            value={state.year}
+            onChange={(e) => handleYear(e)}
+            onBlur={() => setAge()}
+            id="Year"
+            placeholder="1911"
+            required
+          />
+        </BoxInputNumber>
 
-      <BoxInputNumber>
-        <LabelText for="Age">Age</LabelText>
-        <InputText value={state.age} id="Age" disabled />
-      </BoxInputNumber>
+        <BoxInputNumber>
+          <LabelText for="Age">Age</LabelText>
+          <InputText value={state.age} id="Age" disabled />
+        </BoxInputNumber>
+      </BirthdayBox>
 
       <BoxCheckbox>
-        <Checkbox id="aprove" />
+        <Checkbox
+          checked={check}
+          onChange={(e) => {
+            setCheck(e.target.checked);
+          }}
+        />
+        <LabelCheckbox>I accept the terms and privacy</LabelCheckbox>
+      </BoxCheckbox>
+
+      {/* <BoxCheckbox>
+        <Checkbox id="aprove" required />
         <LabelCheckbox for="aprove">
           I accept the terms and privacy
         </LabelCheckbox>
-      </BoxCheckbox>
-      <Button>Next</Button>
-    </form>
+      </BoxCheckbox> */}
+
+      <Button>
+        <p>Next</p>
+        <ChevronRight size={20} />
+      </Button>
+    </Form>
   );
 };
 export default React.memo(FirstTab);
