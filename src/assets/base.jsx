@@ -1,66 +1,25 @@
 import styled from 'styled-components';
-import { Link as LinkS } from 'react-scroll';
 
 export const BodyBackground = styled.div`
   background: #eceef2;
+
   padding-top: 5%;
   padding-bottom: 5%;
+  display: flex;
+  align-self: center;
+  justify-content: center;
 `;
 
 export const FormBackground = styled.div`
-  width: 550px;
+  width: 617px;
   height: 763px;
   background: #ffffff;
   border-radius: 20px;
-  margin-left: 30%;
+  /* margin-left: 30%; */
   padding: 56px 50px;
 `;
 
-export const Title = styled.h1`
-  width: 755px;
-  height: 24px;
-  font-weight: 600;
-  font-size: 18px;
-  color: #000000;
-  font-family: 'Nunito', sans-serif;
-`;
-
-export const Nav = styled.nav`
-  margin-top: 30px;
-  display: flex;
-  width: 515px;
-  height: 48px;
-  background-color: #ffffff;
-  margin: 20px 0px 61px 0px;
-`;
-
-export const NavList = styled.ul`
-  display: flex;
-  justify-content: flex-start;
-  list-style: none;
-  width: 100%;
-  height: 48px;
-`;
-
-export const NavItem = styled.li`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  /* box-shadow: inset 0px -2px 0px #aaaaaa; */
-  width: 33.3%;
-  font-size: 16px;
-  font-family: 'Nunito', sans-serif;
-  font-weight: 400;
-  box-shadow: ${({ Activated }) =>
-    Activated ? 'inset 0px -3px 0px #074ee8' : 'inset 0px -2px 0px #aaaaaa'};
-`;
-
-export const NavLink = styled.a`
-  text-decoration: none;
-  color: ${({ Activated }) => (Activated ? '#074ee8' : '#111111')};
-  // color: #111111;
-  cursor: pointer;
-`;
+//! Parte dos Inputs Genericos
 
 export const LabelText = styled.label`
   /* font-size: 14px;
@@ -76,7 +35,7 @@ export const LabelText = styled.label`
 `;
 
 export const BoxInput = styled.div`
-  margin: 0px 0px 48px 0px;
+  margin: 0px 0px 28px 0px;
 `;
 
 export const InputText = styled.input`
@@ -84,7 +43,7 @@ export const InputText = styled.input`
   border: 2px solid #aaaaaa;
   box-sizing: border-box;
   border-radius: 4px;
-  width: 93.64%;
+  width: 100%;
   height: 40px;
   text-indent: 10px;
   display: block;

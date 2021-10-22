@@ -1,5 +1,5 @@
 import React from 'react';
-import { BoxInput, LabelText, InputText, Button } from '../base/BaseElements';
+import { BoxInput, LabelText, InputText, Button } from '../../assets/base';
 import {
   Dropdown,
   DropdownTitle,
