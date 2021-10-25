@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Form,
   BoxInput,
@@ -9,11 +9,25 @@ import {
 import { ChevronRight } from 'react-feather';
 
 const SecondTab = () => {
+  const [linkedin, setLinkedin] = useState('');
+  const [github, setGithub] = useState('');
+
+  const submit = (e) => {
+    e.preventDefault();
+    console.log({ linkedin, github });
+  };
+
   return (
-    <Form action="#">
+    <Form
+      onSubmit={(e) => {
+        submit(e);
+      }}
+    >
       <BoxInput>
         <LabelText for="Linkedin">Linkedin</LabelText>
         <InputText
+          value={linkedin}
+          onChange={(e) => setLinkedin(e.target.value)}
           id="Linkedin"
           placeholder="https://www.linkedin.com/in/foo-bar-3a0560104/"
         />
@@ -21,6 +35,8 @@ const SecondTab = () => {
       <BoxInput>
         <LabelText for="Github">Github *</LabelText>
         <InputText
+          value={github}
+          onChange={(e) => setGithub(e.target.value)}
           id="Github"
           placeholder="https://github.com/foobar"
           required
