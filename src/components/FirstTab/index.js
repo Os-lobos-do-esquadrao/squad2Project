@@ -95,7 +95,12 @@ const FirstTab = () => {
         <BoxEmailPhone>
           <BoxEmail>
             <LabelText for="Email">Email *</LabelText>
-            <InputText id="Email" placeholder="foo@bar.com" required />
+            <InputText
+              id="Email"
+              type="email"
+              placeholder="foo@bar.com"
+              required
+            />
           </BoxEmail>
           <BoxPhone>
             <LabelText for="Phone">Phone</LabelText>
@@ -163,13 +168,6 @@ const FirstTab = () => {
         />
         <LabelCheckbox>I accept the terms and privacy</LabelCheckbox>
       </BoxCheckbox>
-
-      {/* <BoxCheckbox>
-        <Checkbox id="aprove" required />
-        <LabelCheckbox for="aprove">
-          I accept the terms and privacy
-        </LabelCheckbox>
-      </BoxCheckbox> */}
 
       <Button>
         <p>Next</p>

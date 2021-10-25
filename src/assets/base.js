@@ -61,6 +61,7 @@ export const InputText = styled.input`
 export const Button = styled.button.attrs({ type: 'submit' })`
   position: absolute;
   display: flex;
+  /* display: inline-block; */
   font-family: 'Nunito', sans-serif;
   justify-content: center;
   align-items: center;
@@ -75,6 +76,7 @@ export const Button = styled.button.attrs({ type: 'submit' })`
   bottom: 0;
   right: 0;
   cursor: pointer;
+
   p {
     margin-right: auto;
   }

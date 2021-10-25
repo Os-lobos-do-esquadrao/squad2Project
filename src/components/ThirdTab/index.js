@@ -1,34 +1,85 @@
-import React from 'react';
-import { BoxInput, LabelText, InputText, Button } from '../../assets/base';
+import React, { useState } from 'react';
+
 import {
+  Form,
+  BoxInput,
+  LabelText,
+  InputText,
+  Button,
+} from '../../assets/base';
+import {
+  BoxCertificateInput,
+  CertificateInput,
   Dropdown,
   DropdownTitle,
   DropdownContent,
   DropdownContentText,
   DropdownContextLink,
+  HeartBox,
   ButtonMore,
+  ButtonHeart,
 } from './ThirdTabElements';
 
+import { Plus, ChevronRight, ChevronDown, Check, Heart } from 'react-feather';
+
 const ThirdTab = () => {
+  const [heart, setHeart] = useState(false);
   return (
-    <form action="#">
+    <Form>
       <div>
         <LabelText for="Certificates">Certificates*</LabelText>
-        <InputText
+        <BoxCertificateInput>
+          <CertificateInput
+            id="Certificates"
+            placeholder="http://www.linkedin.com/in/foo-bar-3a0560104/"
+          />
+          <ButtonHeart onClick={() => setHeart(!heart)}>
+            <Heart
+              size={30}
+              color={heart ? 'red' : 'grey'}
+              fill={heart ? 'red' : 'white'}
+            />
+          </ButtonHeart>
+        </BoxCertificateInput>
+        {/* <InputText
           type="text"
           id="Certificates"
           placeholder="http://www.linkedin.com/in/foo-bar-3a0560104/"
-        />
-        <div style={{ display: 'flex' }}>
+        /> */}
+
+        <div style={{ display: 'flex', marginBottom: '30px' }}>
           <Dropdown>
-            <DropdownTitle>Certificates List</DropdownTitle>
+            <DropdownTitle>
+              <p>Certificates List</p>
+              <span>
+                <ChevronDown size={20} />
+              </span>
+            </DropdownTitle>
+
             <DropdownContent>
               <DropdownContextLink>
-                <DropdownContentText>Certificado</DropdownContentText>
+                <DropdownContentText>
+                  http://www.linkedin.com/in/foo-bar-3a0560104/
+                </DropdownContentText>
+                <HeartBox>
+                  <Heart color="red" fill="red" />
+                </HeartBox>
+              </DropdownContextLink>
+              <DropdownContextLink>
+                <DropdownContentText>
+                  http://www.linkedin.com/in/foo-bar-3a0560104/
+                </DropdownContentText>
+                <HeartBox>
+                  <Heart color="white" fill="white" />
+                </HeartBox>
               </DropdownContextLink>
             </DropdownContent>
           </Dropdown>
-          <ButtonMore type="button">More</ButtonMore>
+          <ButtonMore type="button">
+            <Plus size={20} />
+            <p>More</p>
+            <ChevronRight size={20} />
+          </ButtonMore>
         </div>
       </div>
       <BoxInput>
@@ -51,8 +102,11 @@ const ThirdTab = () => {
           required
         />
       </BoxInput>
-      <Button type="submit">Finish</Button>
-    </form>
+      <Button>
+        {' '}
+        <Check size={20} /> <p>Finish</p>
+      </Button>
+    </Form>
   );
 };
 
