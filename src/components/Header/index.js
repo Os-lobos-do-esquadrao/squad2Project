@@ -49,29 +49,29 @@ function Header() {
       </div>
       <Nav>
         <NavList>
-          <NavItem Activated={state.activatedBase}>
+          <NavItem activated={state.activatedBase}>
             <NavLink
               onClick={(e) => changeForm('b')}
               to="/"
-              Activated={state.activatedBase}
+              activated={state.activatedBase}
             >
               Basic
             </NavLink>
           </NavItem>
-          <NavItem Activated={state.activatedSocial}>
+          <NavItem activated={state.activatedSocial}>
             <NavLink
               onClick={(e) => changeForm('s')}
               to="/social"
-              Activated={state.activatedSocial}
+              activated={state.activatedSocial}
             >
               Social
             </NavLink>
           </NavItem>
-          <NavItem Activated={state.activatedCertificates}>
+          <NavItem activated={state.activatedCertificates}>
             <NavLink
               onClick={(e) => changeForm('c')}
               to="/certificates"
-              Activated={state.activatedCertificates}
+              activated={state.activatedCertificates}
             >
               Certificates
             </NavLink>

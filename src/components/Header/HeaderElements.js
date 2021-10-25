@@ -36,13 +36,13 @@ export const NavItem = styled.li`
   font-size: 16px;
   font-family: 'Nunito', sans-serif;
   font-weight: 400;
-  box-shadow: ${({ Activated }) =>
-    Activated ? 'inset 0px -3px 0px #074ee8' : 'inset 0px -2px 0px #aaaaaa'};
+  box-shadow: ${({ activated }) =>
+    activated ? 'inset 0px -3px 0px #074ee8' : 'inset 0px -2px 0px #aaaaaa'};
 `;
 
 export const NavLink = styled(Link)`
   text-decoration: none;
-  color: ${({ Activated }) => (Activated ? '#074ee8' : '#111111')};
+  color: ${({ activated }) => (activated ? '#074ee8' : '#111111')};
   // color: #111111;
   cursor: pointer;
 `;
