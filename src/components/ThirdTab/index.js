@@ -7,6 +7,7 @@ import {
   InputText,
   Button,
 } from '../../assets/base';
+
 import {
   BoxCertificateInput,
   CertificateInput,
@@ -26,10 +27,14 @@ import {
 import { Plus, ChevronRight, ChevronDown, Check, Heart } from 'react-feather';
 
 const ThirdTab = () => {
-  const [a, b] = useState(false);
+  const [showAlert, setShow] = useState(false);
   const [certificate, setCertificate] = useState('');
   const [heart, setHeart] = useState(false);
+
   const [certificateList, setList] = useState([]);
+  const [teamName, setTeamName] = useState('');
+  const [institution, setInstitution] = useState('');
+  const [graduation, setGraduation] = useState('');
 
   const moreCertificate = () => {
     if (certificate !== '') {
@@ -42,7 +47,7 @@ const ThirdTab = () => {
         setCertificate('');
         heart && setHeart(!heart);
       } else {
-        b(!a);
+        setShow(!showAlert);
       }
     }
   };
@@ -55,10 +60,7 @@ const ThirdTab = () => {
       }
     }
 
-    console.log(check);
-
     check ? list.splice(check, 0, newElement) : list.splice(0, 0, newElement);
-    console.log(list);
     return list;
   };
 
@@ -67,13 +69,23 @@ const ThirdTab = () => {
       <Alert>
         <AlertError />
         <p>A maximum of 5 certificates</p>
-        <CloseAlert onClick={() => b(!a)}>OK</CloseAlert>
+        <CloseAlert onClick={() => setShow(!showAlert)}>OK</CloseAlert>
       </Alert>
     );
   };
 
+  const submit = (e) => {
+    e.preventDefault();
+    console.log({ certificateList, teamName, institution, graduation });
+  };
+
   return (
-    <Form alert={a}>
+    <Form
+      alert={showAlert}
+      onSubmit={(e) => {
+        submit(e);
+      }}
+    >
       <div>
         <LabelText for="Certificates">Certificates*</LabelText>
         <BoxCertificateInput>
@@ -134,11 +146,19 @@ const ThirdTab = () => {
       </div>
       <BoxInput>
         <LabelText for="TeamName">Team Name *</LabelText>
-        <InputText id="TeamName" placeholder="Juanito" required />
+        <InputText
+          value={teamName}
+          onChange={(e) => setTeamName(e.target.value)}
+          id="TeamName"
+          placeholder="Juanito"
+          required
+        />
       </BoxInput>{' '}
       <BoxInput>
         <LabelText for="Institution">Institution *</LabelText>
         <InputText
+          value={institution}
+          onChange={(e) => setInstitution(e.target.value)}
           id="Institution"
           placeholder="Universidade Federal da Paraíba"
           required
@@ -147,6 +167,8 @@ const ThirdTab = () => {
       <BoxInput>
         <LabelText for="Graduation">Graduation *</LabelText>
         <InputText
+          value={graduation}
+          onChange={(e) => setGraduation(e.target.value)}
           id="Graduation"
           placeholder="Ciências da Computação"
           required
@@ -156,7 +178,7 @@ const ThirdTab = () => {
         {' '}
         <Check size={20} /> <p>Finish</p>
       </Button>
-      {a && alert()}
+      {showAlert && alert()}
     </Form>
   );
 };
