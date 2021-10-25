@@ -24,6 +24,8 @@ export const FormBackground = styled.div`
 export const Form = styled.form`
   height: 600px;
   position: relative;
+  /* opacity: ${({ alert }) => alert && 0.3}; */
+  pointer-events: ${({ alert }) => alert && 'none'};
 `;
 
 export const LabelText = styled.label`

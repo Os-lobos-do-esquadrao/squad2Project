@@ -18,20 +18,73 @@ import {
   HeartBox,
   ButtonMore,
   ButtonHeart,
+  Alert,
+  AlertError,
+  CloseAlert,
 } from './ThirdTabElements';
 
 import { Plus, ChevronRight, ChevronDown, Check, Heart } from 'react-feather';
 
 const ThirdTab = () => {
+  const [a, b] = useState(false);
+  const [certificate, setCertificate] = useState('');
   const [heart, setHeart] = useState(false);
+  const [certificateList, setList] = useState([]);
+
+  const moreCertificate = () => {
+    if (certificate !== '') {
+      if (certificateList.length < 5) {
+        let aux = certificateList;
+        heart
+          ? (aux = sortList(aux, [certificate, heart]))
+          : aux.push([certificate, heart]);
+        setList(aux);
+        setCertificate('');
+        heart && setHeart(!heart);
+      } else {
+        b(!a);
+      }
+    }
+  };
+
+  const sortList = (list, newElement) => {
+    let check = 0;
+    for (let i = 0; i < list.length; i++) {
+      if (list[i][1]) {
+        check = i + 1;
+      }
+    }
+
+    console.log(check);
+
+    check ? list.splice(check, 0, newElement) : list.splice(0, 0, newElement);
+    console.log(list);
+    return list;
+  };
+
+  const alert = () => {
+    return (
+      <Alert>
+        <AlertError />
+        <p>A maximum of 5 certificates</p>
+        <CloseAlert onClick={() => b(!a)}>OK</CloseAlert>
+      </Alert>
+    );
+  };
+
   return (
-    <Form>
+    <Form alert={a}>
       <div>
         <LabelText for="Certificates">Certificates*</LabelText>
         <BoxCertificateInput>
           <CertificateInput
             id="Certificates"
+            value={certificate}
             placeholder="http://www.linkedin.com/in/foo-bar-3a0560104/"
+            onChange={(e) => {
+              let certificate = e.target.value;
+              setCertificate(certificate);
+            }}
           />
           <ButtonHeart onClick={() => setHeart(!heart)}>
             <Heart
@@ -41,41 +94,38 @@ const ThirdTab = () => {
             />
           </ButtonHeart>
         </BoxCertificateInput>
-        {/* <InputText
-          type="text"
-          id="Certificates"
-          placeholder="http://www.linkedin.com/in/foo-bar-3a0560104/"
-        /> */}
 
         <div style={{ display: 'flex', marginBottom: '30px' }}>
-          <Dropdown>
-            <DropdownTitle>
-              <p>Certificates List</p>
-              <span>
-                <ChevronDown size={20} />
-              </span>
-            </DropdownTitle>
+          {certificateList.length !== 0 && (
+            <Dropdown>
+              <DropdownTitle>
+                <p>Certificates List</p>
+                <span>
+                  <ChevronDown size={20} />
+                </span>
+              </DropdownTitle>
 
-            <DropdownContent>
-              <DropdownContextLink>
-                <DropdownContentText>
-                  http://www.linkedin.com/in/foo-bar-3a0560104/
-                </DropdownContentText>
-                <HeartBox>
-                  <Heart color="red" fill="red" />
-                </HeartBox>
-              </DropdownContextLink>
-              <DropdownContextLink>
-                <DropdownContentText>
-                  http://www.linkedin.com/in/foo-bar-3a0560104/
-                </DropdownContentText>
-                <HeartBox>
-                  <Heart color="white" fill="white" />
-                </HeartBox>
-              </DropdownContextLink>
-            </DropdownContent>
-          </Dropdown>
-          <ButtonMore type="button">
+              <DropdownContent>
+                {certificateList.map((certificate, index) => (
+                  <DropdownContextLink
+                    key={index}
+                    target="_blank"
+                    href={certificate[0]}
+                  >
+                    <DropdownContentText>{certificate[0]}</DropdownContentText>
+                    <HeartBox>
+                      <Heart
+                        color={certificate[1] ? 'red' : 'white'}
+                        fill={certificate[1] ? 'red' : 'white'}
+                      />
+                    </HeartBox>
+                  </DropdownContextLink>
+                ))}
+              </DropdownContent>
+            </Dropdown>
+          )}
+
+          <ButtonMore type="button" onClick={() => moreCertificate()}>
             <Plus size={20} />
             <p>More</p>
             <ChevronRight size={20} />
@@ -106,6 +156,7 @@ const ThirdTab = () => {
         {' '}
         <Check size={20} /> <p>Finish</p>
       </Button>
+      {a && alert()}
     </Form>
   );
 };
