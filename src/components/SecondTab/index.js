@@ -6,6 +6,7 @@ import {
   InputText,
   Button,
 } from '../../assets/base';
+import { ChevronRight } from 'react-feather';
 
 const SecondTab = () => {
   return (
@@ -25,7 +26,10 @@ const SecondTab = () => {
           required
         />
       </BoxInput>
-      <Button>Next</Button>
+      <Button>
+        <p>Next</p>
+        <ChevronRight size={20} />
+      </Button>
     </Form>
   );
 };

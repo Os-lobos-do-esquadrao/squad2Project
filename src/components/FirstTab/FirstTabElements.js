@@ -37,7 +37,7 @@ export const BoxInputNumber = styled.div`
   display: inline-block;
   width: 23.5%;
   text-align: justify;
-  :not(:first-child):not(:last-child) {
+  &:not(:first-child):not(:last-child) {
     margin: 0 2% 0 0;
   }
 `;
@@ -53,11 +53,11 @@ export const InputNumber = styled.input.attrs({ type: 'number' })`
   font-size: 17px;
   font-family: 'Nunito', sans-serif;
   width: 100%;
-  ::-webkit-inner-spin-button {
+  &::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
   }
-  ::-webkit-outer-spin-button {
+  &::-webkit-outer-spin-button {
     -webkit-appearance: none;
     margin: 0;
   }
@@ -124,7 +124,6 @@ const StyledCheckbox = styled.div`
 
 export const Checkbox = ({ className, checked, ...props }) => (
   <CheckboxContainer className={className}>
-    {console.log(props)}
     <HiddenCheckbox checked={checked} {...props} />
     <StyledCheckbox checked={checked}>
       <Icon viewBox="0 0 24 24">
