@@ -16,7 +16,7 @@ import { phoneMask, calcAge } from '../functions/firstPage';
 // * Icon * //
 import { ChevronRight } from 'react-feather';
 
-const FirstPage = ({ OnSubmit }) => {
+const FirstPage = ({ OnSubmit, setUrl }) => {
   let history = useHistory();
   const [fullName, setName] = useState('');
   const [nickName, setNickname] = useState('');
@@ -58,7 +58,7 @@ const FirstPage = ({ OnSubmit }) => {
       onSubmit={(e) => {
         e.preventDefault();
         OnSubmit(fullName, nickName, email, phone, birthday, check);
-        history.push('/social');
+        setUrl('/social');
       }}
     >
       <DefaultInput

@@ -9,7 +9,7 @@ import { Button } from '../components/Buttons/ButtonTemplate';
 // * Icon * //
 import { Check } from 'react-feather';
 
-const ThirdPage = ({ OnSubmit }) => {
+const ThirdPage = ({ OnSubmit, setUrl }) => {
   let history = useHistory();
   const [showAlert, setShow] = useState(false);
   const [certificate, setCertificate] = useState('');
@@ -54,6 +54,7 @@ const ThirdPage = ({ OnSubmit }) => {
       onSubmit={(e) => {
         e.preventDefault();
         OnSubmit({ certificateList, teamName, institution, graduation });
+        history.push('/representation');
       }}
     >
       <CertificateBox
