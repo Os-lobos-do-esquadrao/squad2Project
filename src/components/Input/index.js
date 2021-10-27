@@ -130,7 +130,7 @@ export const CertificateBox = ({
   moreCertificate,
 }) => (
   <div>
-    <Label for="Certificates">Certificates*</Label>
+    <Label for="Certificates">Certificates</Label>
     <BoxCertificateInput>
       <CertificateInput
         id="Certificates"

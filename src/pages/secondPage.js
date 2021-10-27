@@ -9,7 +9,7 @@ import { Button } from '../components/Buttons/ButtonTemplate';
 // * Icon * //
 import { ChevronRight } from 'react-feather';
 
-const SecondPage = ({ OnSubmit }) => {
+const SecondPage = ({ OnSubmit, setUrl }) => {
   let history = useHistory();
   const [linkedin, setLinkedin] = useState('');
   const [github, setGithub] = useState('');
@@ -19,7 +19,7 @@ const SecondPage = ({ OnSubmit }) => {
       onSubmit={(e) => {
         e.preventDefault();
         OnSubmit({ linkedin, github });
-        history.push('/certificates');
+        setUrl('/certificates');
       }}
     >
       <DefaultInput

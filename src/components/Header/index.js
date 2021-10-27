@@ -1,21 +1,21 @@
 import React, { useEffect, useState } from 'react';
-import { useHistory } from 'react-router';
+import { useHistory, useLocation } from 'react-router';
 
 import { Title, Nav, NavList, NavItem, NavLink } from './HeaderElements';
 
-function Header() {
+const Header = ({ url, setUrl }) => {
   let history = useHistory();
-  const [actived, setActived] = useState('/');
+
   const [state, setState] = useState({
     activatedBase: true,
     activatedSocial: false,
     activatedCertificates: false,
   });
 
-  const changeForm = (activatedNav) => {
-    let activatedBase = activatedNav === 'b';
-    let activatedSocial = activatedNav === 's';
-    let activatedCertificates = activatedNav === 'c';
+  const configUrl = (newUrl) => {
+    let activatedBase = newUrl === '/';
+    let activatedSocial = newUrl === '/social';
+    let activatedCertificates = newUrl === '/certificates';
     setState({
       ...state,
       activatedBase,
@@ -24,20 +24,15 @@ function Header() {
     });
   };
 
+  const changeForm = (activatedNav) => {
+    setUrl(activatedNav);
+    configUrl(activatedNav);
+  };
+
   useEffect(() => {
-    if (!state.fetched) {
-      let activatedBase = actived === '/';
-      let activatedSocial = actived === '/social';
-      let activatedCertificates = actived === '/certificates';
-      setState({
-        ...state,
-        activatedBase,
-        activatedSocial,
-        activatedCertificates,
-      });
-      history.push(actived);
-    }
-  }, [actived]);
+    configUrl(url);
+    history.push(url);
+  }, [url]);
 
   return (
     <header>
@@ -51,7 +46,7 @@ function Header() {
         <NavList>
           <NavItem activated={state.activatedBase}>
             <NavLink
-              onClick={(e) => changeForm('b')}
+              onClick={(e) => changeForm('/')}
               to="/"
               activated={state.activatedBase}
             >
@@ -60,7 +55,7 @@ function Header() {
           </NavItem>
           <NavItem activated={state.activatedSocial}>
             <NavLink
-              onClick={(e) => changeForm('s')}
+              onClick={(e) => changeForm('/social')}
               to="/social"
               activated={state.activatedSocial}
             >
@@ -69,7 +64,7 @@ function Header() {
           </NavItem>
           <NavItem activated={state.activatedCertificates}>
             <NavLink
-              onClick={(e) => changeForm('c')}
+              onClick={(e) => changeForm('/certificates')}
               to="/certificates"
               activated={state.activatedCertificates}
             >
@@ -80,6 +75,6 @@ function Header() {
       </Nav>
     </header>
   );
-}
+};
 
 export default Header;
