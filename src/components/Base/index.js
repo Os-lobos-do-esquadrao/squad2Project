@@ -17,6 +17,8 @@ export const FormBackground = styled.div`
   border-radius: 20px;
   /* margin-left: 30%; */
   padding: 56px 50px;
+  opacity: ${({ invisible }) => invisible && 0.3};
+  pointer-events: ${({ invisible }) => invisible && 'none'};
 `;
 
 //! Parte dos Inputs Genericos
@@ -24,8 +26,7 @@ export const FormBackground = styled.div`
 export const Form = styled.form`
   height: 600px;
   position: relative;
-  /* opacity: ${({ alert }) => alert && 0.3}; */
-  pointer-events: ${({ alert }) => alert && 'none'};
+  /* ; */
 `;
 
 export const Cutton = styled.button.attrs({ type: 'submit' })`

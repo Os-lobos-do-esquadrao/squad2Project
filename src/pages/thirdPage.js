@@ -1,5 +1,5 @@
 // * React * //
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 // * REDUX * //
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -12,9 +12,8 @@ import { DefaultInput, CertificateBox } from '../components/Input';
 // * Icon * //
 import { Check } from 'react-feather';
 
-const ThirdPage = ({ infosForms, setInfosForms, setPage }) => {
+const ThirdPage = ({ infosForms, setInfosForms, setPage, setShow }) => {
   // * States * //
-  const [showAlert, setShow] = useState(false);
   const [certificate, setCertificate] = useState('');
   const [heart, setHeart] = useState(false);
   const [certificateList, setList] = useState([]);
@@ -34,7 +33,7 @@ const ThirdPage = ({ infosForms, setInfosForms, setPage }) => {
         setCertificate('');
         heart && setHeart(!heart);
       } else {
-        setShow(!showAlert);
+        setShow(true);
       }
     }
   };
@@ -49,6 +48,17 @@ const ThirdPage = ({ infosForms, setInfosForms, setPage }) => {
     check ? list.splice(check, 0, newElement) : list.splice(0, 0, newElement);
     return list;
   };
+
+  // * Effect * //
+  useEffect(() => {
+    if (infosForms !== undefined && Object.entries(infosForms).length !== 0) {
+      if (infosForms.github === undefined) {
+        setPage(1);
+      }
+    } else {
+      setPage(0);
+    }
+  }, []);
 
   return (
     <Form
