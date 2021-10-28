@@ -19,7 +19,8 @@ import { phoneMask, calcAge } from '../functions/firstPage';
 // * Icon * //
 import { ChevronRight } from 'react-feather';
 
-const FirstPage = ({ OnSubmit, setUrl, setInfosForms, infosForms }) => {
+const FirstPage = ({ infosForms, setInfosForms, setPage }) => {
+  // * States * //
   const [fullName, setName] = useState('');
   const [nickName, setNickname] = useState('');
   const [email, setEmail] = useState('');
@@ -32,6 +33,7 @@ const FirstPage = ({ OnSubmit, setUrl, setInfosForms, infosForms }) => {
   });
   const [check, setCheck] = useState(false);
 
+  // * Functions * //
   const setAge = () => {
     const day = birthday.day;
     const month = birthday.month;
@@ -54,7 +56,22 @@ const FirstPage = ({ OnSubmit, setUrl, setInfosForms, infosForms }) => {
   const handleYear = (year) => {
     setBirthday({ ...birthday, year });
   };
+  const Submit = (e) => {
+    e.preventDefault();
+    let infoData = {
+      fullName,
+      nickName,
+      email,
+      phone,
+      date: birthday,
+      birthday: birthday.day + '/' + birthday.month + '/' + birthday.year,
+      check,
+    };
+    setPage(1);
+    setInfosForms(infoData);
+  };
 
+  // * Effect * //
   useEffect(() => {
     if (infosForms !== undefined) {
       if (Object.entries(infosForms).length !== 0) {
@@ -73,22 +90,6 @@ const FirstPage = ({ OnSubmit, setUrl, setInfosForms, infosForms }) => {
       }
     }
   }, []);
-
-  const Submit = (e) => {
-    e.preventDefault();
-    OnSubmit(fullName, nickName, email, phone, birthday, check);
-    setUrl('/social');
-    let infoData = {
-      fullName,
-      nickName,
-      email,
-      phone,
-      date: birthday,
-      birthday: birthday.day + '/' + birthday.month + '/' + birthday.year,
-      check,
-    };
-    setInfosForms(infoData);
-  };
 
   return (
     <Form

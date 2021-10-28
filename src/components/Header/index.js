@@ -1,13 +1,9 @@
 // * React * //
 import React, { useEffect, useState } from 'react';
-// * Router * //
-import { useHistory, useLocation } from 'react-router';
 // * Template * //
 import { Title, Nav, NavList, NavItem, NavLink } from './HeaderTemplate';
 
-const Header = ({ url, setUrl }) => {
-  let history = useHistory();
-
+const Header = ({ page, setPage }) => {
   const [state, setState] = useState({
     activatedBase: true,
     activatedSocial: false,
@@ -17,11 +13,11 @@ const Header = ({ url, setUrl }) => {
   const [show, setShow] = useState(false);
 
   const configUrl = (newUrl) => {
-    if (newUrl !== '/representation') {
+    if (newUrl !== 3) {
       show && setShow(!show);
-      let activatedBase = newUrl === '/';
-      let activatedSocial = newUrl === '/social';
-      let activatedCertificates = newUrl === '/certificates';
+      let activatedBase = newUrl === 0;
+      let activatedSocial = newUrl === 1;
+      let activatedCertificates = newUrl === 2;
       setState({
         ...state,
         activatedBase,
@@ -34,14 +30,13 @@ const Header = ({ url, setUrl }) => {
   };
 
   const changeForm = (activatedNav) => {
-    setUrl(activatedNav);
+    setPage(activatedNav);
     configUrl(activatedNav);
   };
 
   useEffect(() => {
-    configUrl(url);
-    history.push(url);
-  }, [url]);
+    configUrl(page);
+  }, [page]);
 
   return (
     <header>
@@ -53,30 +48,18 @@ const Header = ({ url, setUrl }) => {
       </div>
       <Nav show={show}>
         <NavList>
-          <NavItem activated={state.activatedBase}>
-            <NavLink
-              onClick={(e) => changeForm('/')}
-              to="/"
-              activated={state.activatedBase}
-            >
+          <NavItem activated={page === 0}>
+            <NavLink onClick={(e) => changeForm(0)} activated={page === 0}>
               Basic
             </NavLink>
           </NavItem>
-          <NavItem activated={state.activatedSocial}>
-            <NavLink
-              onClick={(e) => changeForm('/social')}
-              to="/social"
-              activated={state.activatedSocial}
-            >
+          <NavItem activated={page === 1}>
+            <NavLink onClick={(e) => changeForm(1)} activated={page === 1}>
               Social
             </NavLink>
           </NavItem>
-          <NavItem activated={state.activatedCertificates}>
-            <NavLink
-              onClick={(e) => changeForm('/certificates')}
-              to="/certificates"
-              activated={state.activatedCertificates}
-            >
+          <NavItem activated={page === 2}>
+            <NavLink onClick={(e) => changeForm(2)} activated={page === 2}>
               Certificates
             </NavLink>
           </NavItem>

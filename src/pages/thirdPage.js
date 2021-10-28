@@ -1,31 +1,29 @@
 // * React * //
 import React, { useState } from 'react';
-// * Router * //
-import { useHistory } from 'react-router';
 // * REDUX * //
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actions from '../store/actions';
+// * Template * //
+import { Button } from '../components/Buttons/ButtonTemplate';
 // * Component * //
 import { Form } from '../components/Base';
 import { DefaultInput, CertificateBox } from '../components/Input';
-import { Button } from '../components/Buttons/ButtonTemplate';
 // * Icon * //
 import { Check } from 'react-feather';
 
-const ThirdPage = ({ OnSubmit, setUrl, setInfosForms, infosForms }) => {
-  let history = useHistory();
+const ThirdPage = ({ infosForms, setInfosForms, setPage }) => {
+  // * States * //
   const [showAlert, setShow] = useState(false);
   const [certificate, setCertificate] = useState('');
   const [heart, setHeart] = useState(false);
-
   const [certificateList, setList] = useState([]);
   const [teamName, setTeamName] = useState('');
   const [institution, setInstitution] = useState('');
   const [graduation, setGraduation] = useState('');
 
+  // * Functions * //
   const moreCertificate = () => {
-    console.log('entros');
     if (certificate !== '') {
       if (certificateList.length < 5) {
         let aux = certificateList;
@@ -40,7 +38,6 @@ const ThirdPage = ({ OnSubmit, setUrl, setInfosForms, infosForms }) => {
       }
     }
   };
-
   const sortList = (list, newElement) => {
     let check = 0;
     for (let i = 0; i < list.length; i++) {
@@ -57,9 +54,7 @@ const ThirdPage = ({ OnSubmit, setUrl, setInfosForms, infosForms }) => {
     <Form
       onSubmit={(e) => {
         e.preventDefault();
-        OnSubmit({ certificateList, teamName, institution, graduation });
-        setUrl('/representation');
-        history.push('/representation');
+        setPage(3);
         setInfosForms({
           ...infosForms,
           certificateList,
