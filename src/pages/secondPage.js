@@ -19,9 +19,11 @@ const SecondPage = ({ infosForms, setInfosForms, setPage }) => {
 
   // * Effect * //
   useEffect(() => {
-    if (infosForms !== undefined) {
+    if (infosForms !== undefined && Object.entries(infosForms).length !== 0) {
       setLinkedin(infosForms.linkedin);
       setGithub(infosForms.github);
+    } else {
+      setPage(0);
     }
   }, []);
 

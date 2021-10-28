@@ -73,21 +73,19 @@ const FirstPage = ({ infosForms, setInfosForms, setPage }) => {
 
   // * Effect * //
   useEffect(() => {
-    if (infosForms !== undefined) {
-      if (Object.entries(infosForms).length !== 0) {
-        setName(infosForms.fullName);
-        setNickname(infosForms.nickName);
-        setEmail(infosForms.email);
-        setPhone(infosForms.phone);
-        const birthday_aux = {
-          day: infosForms.date.day,
-          month: infosForms.date.month,
-          year: infosForms.date.year,
-          age: infosForms.date.age,
-        };
-        setBirthday(birthday_aux);
-        setCheck(infosForms.check);
-      }
+    if (infosForms !== undefined && Object.entries(infosForms).length !== 0) {
+      setName(infosForms.fullName);
+      setNickname(infosForms.nickName);
+      setEmail(infosForms.email);
+      setPhone(infosForms.phone);
+      const birthday_aux = {
+        day: infosForms.date.day,
+        month: infosForms.date.month,
+        year: infosForms.date.year,
+        age: infosForms.date.age,
+      };
+      setBirthday(birthday_aux);
+      setCheck(infosForms.check);
     }
   }, []);
 

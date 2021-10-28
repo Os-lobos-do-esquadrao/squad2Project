@@ -1,6 +1,6 @@
 // * React * //
 import React from 'react';
-// * Component * //
+// * Template * //
 import { BoxInput, Label, Input } from './DefaultInputTemplate';
 import { BoxEmailPhone, BoxEmail, BoxPhone } from './EmailPhoneTemplate';
 import {
@@ -15,6 +15,7 @@ import {
   ButtonHeart,
   ButtonMore,
 } from './CertificateInputTemplate';
+// * Component * //
 import { DropDown } from '../Dropdown/';
 // * Icon * //
 import { Plus, ChevronRight, ChevronDown, Heart } from 'react-feather';
