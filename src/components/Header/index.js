@@ -1,7 +1,9 @@
+// * React * //
 import React, { useEffect, useState } from 'react';
+// * Router * //
 import { useHistory, useLocation } from 'react-router';
-
-import { Title, Nav, NavList, NavItem, NavLink } from './HeaderElements';
+// * Template * //
+import { Title, Nav, NavList, NavItem, NavLink } from './HeaderTemplate';
 
 const Header = ({ url, setUrl }) => {
   let history = useHistory();
@@ -12,16 +14,23 @@ const Header = ({ url, setUrl }) => {
     activatedCertificates: false,
   });
 
+  const [show, setShow] = useState(false);
+
   const configUrl = (newUrl) => {
-    let activatedBase = newUrl === '/';
-    let activatedSocial = newUrl === '/social';
-    let activatedCertificates = newUrl === '/certificates';
-    setState({
-      ...state,
-      activatedBase,
-      activatedSocial,
-      activatedCertificates,
-    });
+    if (newUrl !== '/representation') {
+      show && setShow(!show);
+      let activatedBase = newUrl === '/';
+      let activatedSocial = newUrl === '/social';
+      let activatedCertificates = newUrl === '/certificates';
+      setState({
+        ...state,
+        activatedBase,
+        activatedSocial,
+        activatedCertificates,
+      });
+    } else {
+      setShow(!show);
+    }
   };
 
   const changeForm = (activatedNav) => {
@@ -39,10 +48,10 @@ const Header = ({ url, setUrl }) => {
       <div>
         {' '}
         <div>
-          <Title>Team Sign Up</Title>
+          <Title>{show ? 'Registered Data' : 'Team Sign Up'}</Title>
         </div>
       </div>
-      <Nav>
+      <Nav show={show}>
         <NavList>
           <NavItem activated={state.activatedBase}>
             <NavLink

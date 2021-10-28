@@ -12,7 +12,7 @@ export const Title = styled.h1`
 
 export const Nav = styled.nav`
   margin-top: 30px;
-  display: flex;
+  display: ${({ show }) => (show ? 'none' : 'flex')};
   /* width: 515px; */
   height: 48px;
   background-color: #ffffff;

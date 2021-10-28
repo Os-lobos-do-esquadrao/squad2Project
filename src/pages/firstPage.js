@@ -1,7 +1,11 @@
 // * React * //
-import React, { useState } from 'react';
-// * Router * //
-import { useHistory } from 'react-router';
+import React, { useState, useEffect } from 'react';
+// * REDUX * //
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as actions from '../store/actions';
+// * Template * //
+import { Button } from '../components/Buttons/ButtonTemplate';
 // * Component * //
 import { Form } from '../components/Base';
 import {
@@ -10,14 +14,12 @@ import {
   BirthdayInput,
 } from '../components/Input';
 import { Checkbox } from '../components/Checkbox';
-import { Button } from '../components/Buttons/ButtonTemplate';
 // * Function * //
 import { phoneMask, calcAge } from '../functions/firstPage';
 // * Icon * //
 import { ChevronRight } from 'react-feather';
 
-const FirstPage = ({ OnSubmit, setUrl }) => {
-  let history = useHistory();
+const FirstPage = ({ OnSubmit, setUrl, setInfosForms, infosForms }) => {
   const [fullName, setName] = useState('');
   const [nickName, setNickname] = useState('');
   const [email, setEmail] = useState('');
@@ -53,12 +55,45 @@ const FirstPage = ({ OnSubmit, setUrl }) => {
     setBirthday({ ...birthday, year });
   };
 
+  useEffect(() => {
+    if (infosForms !== undefined) {
+      if (Object.entries(infosForms).length !== 0) {
+        setName(infosForms.fullName);
+        setNickname(infosForms.nickName);
+        setEmail(infosForms.email);
+        setPhone(infosForms.phone);
+        const birthday_aux = {
+          day: infosForms.date.day,
+          month: infosForms.date.month,
+          year: infosForms.date.year,
+          age: infosForms.date.age,
+        };
+        setBirthday(birthday_aux);
+        setCheck(infosForms.check);
+      }
+    }
+  }, []);
+
+  const Submit = (e) => {
+    e.preventDefault();
+    OnSubmit(fullName, nickName, email, phone, birthday, check);
+    setUrl('/social');
+    let infoData = {
+      fullName,
+      nickName,
+      email,
+      phone,
+      date: birthday,
+      birthday: birthday.day + '/' + birthday.month + '/' + birthday.year,
+      check,
+    };
+    setInfosForms(infoData);
+  };
+
   return (
     <Form
       onSubmit={(e) => {
-        e.preventDefault();
-        OnSubmit(fullName, nickName, email, phone, birthday, check);
-        setUrl('/social');
+        Submit(e);
       }}
     >
       <DefaultInput
@@ -97,7 +132,7 @@ const FirstPage = ({ OnSubmit, setUrl }) => {
         setAge={setAge}
       />
 
-      <Checkbox checked={check} setCheck={setCheck} />
+      <Checkbox data={infosForms.check} checked={check} setCheck={setCheck} />
 
       <Button>
         <p>Next</p>
@@ -107,4 +142,6 @@ const FirstPage = ({ OnSubmit, setUrl }) => {
   );
 };
 
-export default FirstPage;
+const mapStateToProps = (state) => ({ infosForms: state.infosForms });
+const mapDispatchToProps = (dispatch) => bindActionCreators(actions, dispatch);
+export default connect(mapStateToProps, mapDispatchToProps)(FirstPage);

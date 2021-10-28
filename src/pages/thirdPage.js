@@ -2,6 +2,10 @@
 import React, { useState } from 'react';
 // * Router * //
 import { useHistory } from 'react-router';
+// * REDUX * //
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as actions from '../store/actions';
 // * Component * //
 import { Form } from '../components/Base';
 import { DefaultInput, CertificateBox } from '../components/Input';
@@ -9,7 +13,7 @@ import { Button } from '../components/Buttons/ButtonTemplate';
 // * Icon * //
 import { Check } from 'react-feather';
 
-const ThirdPage = ({ OnSubmit, setUrl }) => {
+const ThirdPage = ({ OnSubmit, setUrl, setInfosForms, infosForms }) => {
   let history = useHistory();
   const [showAlert, setShow] = useState(false);
   const [certificate, setCertificate] = useState('');
@@ -54,7 +58,15 @@ const ThirdPage = ({ OnSubmit, setUrl }) => {
       onSubmit={(e) => {
         e.preventDefault();
         OnSubmit({ certificateList, teamName, institution, graduation });
+        setUrl('/representation');
         history.push('/representation');
+        setInfosForms({
+          ...infosForms,
+          certificateList,
+          teamName,
+          institution,
+          graduation,
+        });
       }}
     >
       <CertificateBox
@@ -97,4 +109,6 @@ const ThirdPage = ({ OnSubmit, setUrl }) => {
   );
 };
 
-export default ThirdPage;
+const mapStateToProps = (state) => ({ infosForms: state.infosForms });
+const mapDispatchToProps = (dispatch) => bindActionCreators(actions, dispatch);
+export default connect(mapStateToProps, mapDispatchToProps)(ThirdPage);
