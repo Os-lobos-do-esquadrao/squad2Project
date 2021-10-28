@@ -1,16 +1,16 @@
 // * React * //
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 // * REDUX * //
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actions from '../store/actions';
-// * Component * //
+// * Template * //
 import { Table, Th, Td, P } from '../components/Table/TableTemplate';
 import { Button } from '../components/Buttons/ButtonTemplate';
 // * Icon * //
 import { ChevronRight } from 'react-feather';
 
-const FourthPage = ({ setUrl, infosForms, reset }) => {
+const FourthPage = ({ infosForms, setPage, reset }) => {
   return (
     <div style={{ position: 'relative', height: '600px' }}>
       <Table>
@@ -92,7 +92,7 @@ const FourthPage = ({ setUrl, infosForms, reset }) => {
       <Button
         onClick={() => {
           reset();
-          setUrl('/');
+          setPage(0);
         }}
       >
         OK

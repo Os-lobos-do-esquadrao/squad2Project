@@ -123,6 +123,7 @@ export const BirthdayInput = ({
     </BoxInputNumber>
   </BirthdayBox>
 );
+
 export const CertificateBox = ({
   certificate,
   setCertificate,

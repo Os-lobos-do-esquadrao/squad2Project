@@ -40,7 +40,7 @@ export const NavItem = styled.li`
     activated ? 'inset 0px -3px 0px #074ee8' : 'inset 0px -2px 0px #aaaaaa'};
 `;
 
-export const NavLink = styled(Link)`
+export const NavLink = styled.p`
   text-decoration: none;
   color: ${({ activated }) => (activated ? '#074ee8' : '#111111')};
   // color: #111111;

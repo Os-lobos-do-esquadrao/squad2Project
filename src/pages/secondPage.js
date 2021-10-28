@@ -4,17 +4,20 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actions from '../store/actions';
+// * Template * //
+import { Button } from '../components/Buttons/ButtonTemplate';
 // * Component * //
 import { Form } from '../components/Base';
 import { DefaultInput } from '../components/Input';
-import { Button } from '../components/Buttons/ButtonTemplate';
 // * Icon * //
 import { ChevronRight } from 'react-feather';
 
-const SecondPage = ({ OnSubmit, setUrl, setInfosForms, infosForms }) => {
+const SecondPage = ({ infosForms, setInfosForms, setPage }) => {
+  // * States * //
   const [linkedin, setLinkedin] = useState('');
   const [github, setGithub] = useState('');
 
+  // * Effect * //
   useEffect(() => {
     if (infosForms !== undefined) {
       setLinkedin(infosForms.linkedin);
@@ -26,8 +29,7 @@ const SecondPage = ({ OnSubmit, setUrl, setInfosForms, infosForms }) => {
     <Form
       onSubmit={(e) => {
         e.preventDefault();
-        OnSubmit({ linkedin, github });
-        setUrl('/certificates');
+        setPage(2);
         setInfosForms({ ...infosForms, linkedin, github });
       }}
     >
