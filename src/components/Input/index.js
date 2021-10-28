@@ -18,6 +18,7 @@ import {
 import { DropDown } from '../Dropdown/';
 // * Icon * //
 import { Plus, ChevronRight, ChevronDown, Heart } from 'react-feather';
+
 export const DefaultInput = ({
   id,
   placeholder,
@@ -25,18 +26,20 @@ export const DefaultInput = ({
   value,
   setValue,
   required,
-}) => (
-  <BoxInput>
-    <Label for={id}>{text}</Label>
-    <Input
-      value={value}
-      onChange={(e) => setValue(e.target.value)}
-      id={id}
-      placeholder={placeholder}
-      required={required}
-    />
-  </BoxInput>
-);
+}) => {
+  return (
+    <BoxInput>
+      <Label for={id}>{text}</Label>
+      <Input
+        value={value}
+        onChange={(e) => setValue(e.target.value)}
+        id={id}
+        placeholder={placeholder}
+        required={required}
+      />
+    </BoxInput>
+  );
+};
 
 export const EmailPhoneInput = ({ email, setEmail, phone, phoneMask }) => (
   <BoxInput>
@@ -120,7 +123,6 @@ export const BirthdayInput = ({
     </BoxInputNumber>
   </BirthdayBox>
 );
-
 export const CertificateBox = ({
   certificate,
   setCertificate,

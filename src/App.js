@@ -15,20 +15,20 @@ import FourthPage from './pages/fourthPage';
 const App = () => {
   // let history = useHistory();
 
-  let [state, setState] = useState([]);
-  let [url, setUrl] = useState('/');
-  let [firstPage, setFirtstPage] = useState();
-  let [secondPage, setSecondPage] = useState();
-  let [thirdPage, setThirdPage] = useState();
+  const [state, setState] = useState([]);
+  const [url, setUrl] = useState('/');
+  const [firstPage, setFirtstPage] = useState();
+  const [secondPage, setSecondPage] = useState();
+  const [thirdPage, setThirdPage] = useState();
 
   const OnSubmit = (values) => {
     let aux = state;
     aux = [...aux, values];
-    console.log(aux);
+    // console.log(aux);
     setState(aux);
   };
 
-  console.log(state);
+  // console.log(state);
 
   const changeUrl = (newUrL) => {
     console.log(newUrL);
@@ -53,7 +53,11 @@ const App = () => {
                   <ThirdPage OnSubmit={OnSubmit} setUrl={changeUrl} />
                 </Route>
                 <Route path="/representation">
-                  <FourthPage />
+                  <FourthPage
+                    values={state}
+                    setState={setState}
+                    setUrl={changeUrl}
+                  />
                 </Route>
               </Switch>
             </FormBackground>
@@ -63,4 +67,5 @@ const App = () => {
     </>
   );
 };
+
 export default App;

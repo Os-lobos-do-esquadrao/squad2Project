@@ -1,7 +1,9 @@
 // * React * //
-import React, { useState } from 'react';
-// * Router * //
-import { useHistory } from 'react-router';
+import React, { useState, useEffect } from 'react';
+// * REDUX * //
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as actions from '../store/actions';
 // * Component * //
 import { Form } from '../components/Base';
 import { DefaultInput } from '../components/Input';
@@ -9,10 +11,16 @@ import { Button } from '../components/Buttons/ButtonTemplate';
 // * Icon * //
 import { ChevronRight } from 'react-feather';
 
-const SecondPage = ({ OnSubmit, setUrl }) => {
-  let history = useHistory();
+const SecondPage = ({ OnSubmit, setUrl, setInfosForms, infosForms }) => {
   const [linkedin, setLinkedin] = useState('');
   const [github, setGithub] = useState('');
+
+  useEffect(() => {
+    if (infosForms !== undefined) {
+      setLinkedin(infosForms.linkedin);
+      setGithub(infosForms.github);
+    }
+  }, []);
 
   return (
     <Form
@@ -20,6 +28,7 @@ const SecondPage = ({ OnSubmit, setUrl }) => {
         e.preventDefault();
         OnSubmit({ linkedin, github });
         setUrl('/certificates');
+        setInfosForms({ ...infosForms, linkedin, github });
       }}
     >
       <DefaultInput
@@ -46,4 +55,6 @@ const SecondPage = ({ OnSubmit, setUrl }) => {
   );
 };
 
-export default SecondPage;
+const mapStateToProps = (state) => ({ infosForms: state.infosForms });
+const mapDispatchToProps = (dispatch) => bindActionCreators(actions, dispatch);
+export default connect(mapStateToProps, mapDispatchToProps)(SecondPage);
