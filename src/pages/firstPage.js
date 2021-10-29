@@ -1,13 +1,13 @@
 // * React * //
 import React, { useState, useEffect } from 'react';
-// * REDUX * //
+// * Redux * //
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actions from '../store/actions';
 // * Template * //
 import { Button } from '../components/Buttons/ButtonTemplate';
+import { Form } from '../components/Base/BaseTemplate';
 // * Component * //
-import { Form } from '../components/Base';
 import {
   DefaultInput,
   EmailPhoneInput,
@@ -16,6 +16,7 @@ import {
 import { Checkbox } from '../components/Checkbox';
 // * Function * //
 import { phoneMask, calcAge } from '../functions/firstPage';
+import { navValidation } from '../functions/validations';
 // * Icon * //
 import { ChevronRight } from 'react-feather';
 
@@ -73,7 +74,7 @@ const FirstPage = ({ infosForms, setInfosForms, setPage }) => {
 
   // * Effect * //
   useEffect(() => {
-    if (infosForms !== undefined && Object.entries(infosForms).length !== 0) {
+    if (navValidation(infosForms)) {
       setName(infosForms.fullName);
       setNickname(infosForms.nickName);
       setEmail(infosForms.email);
@@ -89,6 +90,7 @@ const FirstPage = ({ infosForms, setInfosForms, setPage }) => {
     }
   }, []);
 
+  // * Return * //
   return (
     <Form
       onSubmit={(e) => {

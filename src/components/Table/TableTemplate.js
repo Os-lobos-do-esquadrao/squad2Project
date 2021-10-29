@@ -30,3 +30,9 @@ export const P = styled.p`
   width: 400px;
   font-family: 'Nunito', sans-serif;
 `;
+
+export const TextContent = styled.div`
+  display: flex;
+  align-items: center;
+  color: #000000;
+`;

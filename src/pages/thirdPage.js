@@ -1,14 +1,17 @@
 // * React * //
 import React, { useState, useEffect } from 'react';
-// * REDUX * //
+// * Redux * //
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actions from '../store/actions';
 // * Template * //
 import { Button } from '../components/Buttons/ButtonTemplate';
+import { Form } from '../components/Base/BaseTemplate';
 // * Component * //
-import { Form } from '../components/Base';
 import { DefaultInput, CertificateBox } from '../components/Input';
+// * Function * //
+import { moreCertificate } from '../functions/thirdPage';
+import { navValidation } from '../functions/validations';
 // * Icon * //
 import { Check } from 'react-feather';
 
@@ -22,44 +25,27 @@ const ThirdPage = ({ infosForms, setInfosForms, setPage, setShow }) => {
   const [graduation, setGraduation] = useState('');
 
   // * Functions * //
-  const moreCertificate = () => {
-    if (certificate !== '') {
-      if (certificateList.length < 5) {
-        let aux = certificateList;
-        heart
-          ? (aux = sortList(aux, [certificate, heart]))
-          : aux.push([certificate, heart]);
-        setList(aux);
-        setCertificate('');
-        heart && setHeart(!heart);
-      } else {
-        setShow(true);
-      }
+  const moreFunction = () => {
+    let aux = moreCertificate(certificate, certificateList, heart);
+    if (aux) {
+      setList(aux);
+      setCertificate('');
+      heart && setHeart(!heart);
+    } else {
+      setShow(true);
     }
-  };
-  const sortList = (list, newElement) => {
-    let check = 0;
-    for (let i = 0; i < list.length; i++) {
-      if (list[i][1]) {
-        check = i + 1;
-      }
-    }
-
-    check ? list.splice(check, 0, newElement) : list.splice(0, 0, newElement);
-    return list;
   };
 
   // * Effect * //
   useEffect(() => {
-    if (infosForms !== undefined && Object.entries(infosForms).length !== 0) {
-      if (infosForms.github === undefined) {
-        setPage(1);
-      }
+    if (navValidation(infosForms)) {
+      infosForms.github === undefined && setPage(1);
     } else {
       setPage(0);
     }
   }, []);
 
+  // * Return * //
   return (
     <Form
       onSubmit={(e) => {
@@ -80,7 +66,7 @@ const ThirdPage = ({ infosForms, setInfosForms, setPage, setShow }) => {
         setHeart={setHeart}
         heart={heart}
         certificateList={certificateList}
-        moreCertificate={moreCertificate}
+        moreCertificate={moreFunction}
       />
       <DefaultInput
         id="TeamName"

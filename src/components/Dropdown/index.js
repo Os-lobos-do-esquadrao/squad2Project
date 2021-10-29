@@ -1,6 +1,6 @@
 // * React * //
 import React from 'react';
-// * Component * //
+// * Template * //
 import {
   DropdownTitle,
   DropdownContent,
