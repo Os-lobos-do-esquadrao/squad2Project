@@ -90,6 +90,8 @@ export const BirthdayInput = ({
         onBlur={() => setAge()}
         id="Day"
         placeholder="01"
+        min="01"
+        max="31"
         required
       />
     </BoxInputNumber>
@@ -102,6 +104,8 @@ export const BirthdayInput = ({
         onBlur={() => setAge()}
         id="Month"
         placeholder="01"
+        min="01"
+        max="12"
         required
       />
     </BoxInputNumber>
@@ -114,6 +118,8 @@ export const BirthdayInput = ({
         onBlur={() => setAge()}
         id="Year"
         placeholder="1911"
+        min="1911"
+        max="2021"
         required
       />
     </BoxInputNumber>

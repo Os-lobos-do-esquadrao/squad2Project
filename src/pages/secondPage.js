@@ -1,14 +1,16 @@
 // * React * //
 import React, { useState, useEffect } from 'react';
-// * REDUX * //
+// * Redux * //
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actions from '../store/actions';
 // * Template * //
 import { Button } from '../components/Buttons/ButtonTemplate';
+import { Form } from '../components/Base/BaseTemplate';
 // * Component * //
-import { Form } from '../components/Base';
 import { DefaultInput } from '../components/Input';
+// * Function * //
+import { navValidation } from '../functions/validations';
 // * Icon * //
 import { ChevronRight } from 'react-feather';
 
@@ -19,7 +21,7 @@ const SecondPage = ({ infosForms, setInfosForms, setPage }) => {
 
   // * Effect * //
   useEffect(() => {
-    if (infosForms !== undefined && Object.entries(infosForms).length !== 0) {
+    if (navValidation(infosForms)) {
       setLinkedin(infosForms.linkedin);
       setGithub(infosForms.github);
     } else {
@@ -27,6 +29,7 @@ const SecondPage = ({ infosForms, setInfosForms, setPage }) => {
     }
   }, []);
 
+  // * Return * //
   return (
     <Form
       onSubmit={(e) => {

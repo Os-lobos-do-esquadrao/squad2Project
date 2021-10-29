@@ -4,40 +4,24 @@ import React, { useEffect, useState } from 'react';
 import { Title, Nav, NavList, NavItem, NavLink } from './HeaderTemplate';
 
 const Header = ({ page, setPage }) => {
-  const [state, setState] = useState({
-    activatedBase: true,
-    activatedSocial: false,
-    activatedCertificates: false,
-  });
-
+  // * State * //
   const [show, setShow] = useState(false);
 
-  const configUrl = (newUrl) => {
-    if (newUrl !== 3) {
-      show && setShow(!show);
-      let activatedBase = newUrl === 0;
-      let activatedSocial = newUrl === 1;
-      let activatedCertificates = newUrl === 2;
-      setState({
-        ...state,
-        activatedBase,
-        activatedSocial,
-        activatedCertificates,
-      });
+  // * Function * //
+  const changeForm = (activatedNav) => {
+    setPage(activatedNav);
+  };
+
+  // * useEffect * //
+  useEffect(() => {
+    if (page !== 3) {
+      setShow(false);
     } else {
       setShow(!show);
     }
-  };
-
-  const changeForm = (activatedNav) => {
-    setPage(activatedNav);
-    configUrl(activatedNav);
-  };
-
-  useEffect(() => {
-    configUrl(page);
   }, [page]);
 
+  // * Return * //
   return (
     <header>
       <div>
@@ -49,17 +33,35 @@ const Header = ({ page, setPage }) => {
       <Nav show={show}>
         <NavList>
           <NavItem activated={page === 0}>
-            <NavLink onClick={(e) => changeForm(0)} activated={page === 0}>
+            <NavLink
+              onClick={(e) => {
+                e.stopPropagation();
+                changeForm(0);
+              }}
+              activated={page === 0}
+            >
               Basic
             </NavLink>
           </NavItem>
           <NavItem activated={page === 1}>
-            <NavLink onClick={(e) => changeForm(1)} activated={page === 1}>
+            <NavLink
+              onClick={(e) => {
+                e.stopPropagation();
+                changeForm(1);
+              }}
+              activated={page === 1}
+            >
               Social
             </NavLink>
           </NavItem>
           <NavItem activated={page === 2}>
-            <NavLink onClick={(e) => changeForm(2)} activated={page === 2}>
+            <NavLink
+              onClick={(e) => {
+                e.stopPropagation();
+                changeForm(2);
+              }}
+              activated={page === 2}
+            >
               Certificates
             </NavLink>
           </NavItem>

@@ -1,3 +1,4 @@
+// * Function to implement mask in phone input * //
 export function phoneMask(e) {
   let phone_aux = e.target.value
     .replace(/\D/g, '')
@@ -6,9 +7,10 @@ export function phoneMask(e) {
   return phone;
 }
 
+// * Function to calculate the age * //
 export function calcAge(day, month, year) {
   if (day && month && year) {
-    let dateString = `${day}/${month}/${year}`;
+    let dateString = `${year}/${month}/${day}`;
     let today = new Date();
     let birthDate = new Date(dateString);
     let age = today.getFullYear() - birthDate.getFullYear();
