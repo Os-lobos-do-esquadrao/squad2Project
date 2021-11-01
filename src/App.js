@@ -4,6 +4,8 @@ import React, { useState } from 'react';
 import { BodyBackground, FormBackground } from './components/Base/BaseTemplate';
 import Header from './components/Header';
 import AlertPopup from './components/Alert';
+// * GlobalStyle * //
+import { GlobalStyle } from './assets/GlobalStyle';
 // * Page * //
 import FirstPage from './pages/firstPage';
 import SecondPage from './pages/secondPage';
@@ -24,14 +26,17 @@ const App = () => {
 
   // * Return * //
   return (
-    <BodyBackground>
-      <FormBackground invisible={showAlert}>
-        <Header setPage={setPage} page={page} />
+    <>
+      <GlobalStyle />
+      <BodyBackground>
+        <FormBackground invisible={showAlert}>
+          <Header setPage={setPage} page={page} />
 
-        {pages[page]}
-      </FormBackground>
-      {showAlert && <AlertPopup setShow={setShow} />}
-    </BodyBackground>
+          {pages[page]}
+        </FormBackground>
+        {showAlert && <AlertPopup setShow={setShow} />}
+      </BodyBackground>
+    </>
   );
 };
 

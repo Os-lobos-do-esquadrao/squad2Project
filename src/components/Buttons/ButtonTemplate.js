@@ -1,9 +1,9 @@
 import styled from 'styled-components';
+import { baseWidth } from '../UI/variables';
 
 export const Button = styled.button.attrs({ type: 'submit' })`
   position: absolute;
   display: flex;
-  /* display: inline-block; */
   font-family: 'Nunito', sans-serif;
   justify-content: center;
   align-items: center;
@@ -21,5 +21,10 @@ export const Button = styled.button.attrs({ type: 'submit' })`
 
   p {
     margin-right: auto;
+  }
+
+  @media (max-width: ${baseWidth.sm}) {
+    position: relative;
+    margin: 20px 0 20px auto;
   }
 `;

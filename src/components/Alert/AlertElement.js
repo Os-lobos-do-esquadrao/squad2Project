@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { baseWidth } from '../UI/variables';
 
 export const Alert = styled.div`
   display: flex;
@@ -24,6 +25,9 @@ export const Alert = styled.div`
   pointer-events: auto;
   p {
     opacity: 1;
+  }
+  @media (max-width: ${baseWidth.sm}) {
+    width: 80%;
   }
 `;
 

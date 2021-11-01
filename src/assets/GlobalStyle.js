@@ -1,7 +1,6 @@
-/* http://meyerweb.com/eric/tools/css/reset/ 
-   v2.0 | 20110126
-   License: none (public domain)
-*/
+import { createGlobalStyle } from 'styled-components';
+
+export const GlobalStyle = createGlobalStyle`
 html,
 body,
 div,
@@ -90,7 +89,7 @@ video {
   font: inherit;
   vertical-align: baseline;
 }
-/* HTML5 display-role reset for older browsers */
+
 article,
 aside,
 details,
@@ -106,6 +105,9 @@ section {
 }
 body {
   line-height: 1;
+  max-width: 100%;
+  height: 100vh;
+  font-family: Nunito, sans-serif;
 }
 ol,
 ul {
@@ -126,13 +128,4 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
-
-/* html,
-body {
-  height: 100%;
-  width: 100%;
-}
-#root {
-  height: 100%;
-  width: 100%;
-} */
+`;

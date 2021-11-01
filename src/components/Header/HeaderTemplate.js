@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
 
 export const Title = styled.h1`
   width: 755px;
@@ -13,7 +12,6 @@ export const Title = styled.h1`
 export const Nav = styled.nav`
   margin-top: 30px;
   display: ${({ show }) => (show ? 'none' : 'flex')};
-  /* width: 515px; */
   height: 48px;
   background-color: #ffffff;
   margin: 20px 0px 40px 0px;
@@ -31,7 +29,6 @@ export const NavItem = styled.li`
   display: flex;
   align-items: center;
   justify-content: center;
-  /* box-shadow: inset 0px -2px 0px #aaaaaa; */
   width: 33.3%;
   font-size: 16px;
   font-family: 'Nunito', sans-serif;
@@ -42,7 +39,6 @@ export const NavItem = styled.li`
 
 export const NavLink = styled.p`
   text-decoration: none;
-  color: ${({ activated }) => (activated ? '#074ee8' : '#111111')};
-  // color: #111111;
+  color: ${({ activated }) => (activated ? '#074ee8' : '#000000')};
   cursor: pointer;
 `;
