@@ -1,17 +1,15 @@
 import styled from 'styled-components';
+import { baseWidth } from '../UI/variables';
 
 export const BoxInput = styled.div`
   margin: 0px 0px 48px 0px;
   width: 100%;
+  @media (max-width: ${baseWidth.sm}) {
+    margin: 0px 0px 24px 0px;
+  }
 `;
 
 export const Label = styled.label`
-  /* font-size: 14px;
-  line-height: 16px;
-  display: flex;
-  font-family: 'Nunito', sans-serif;
-  color: #767676;
-  width: 100px;*/
   font-family: 'Nunito', sans-serif;
   font-size: 14px;
   line-height: 16px;

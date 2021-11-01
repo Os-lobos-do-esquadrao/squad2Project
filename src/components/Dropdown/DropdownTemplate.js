@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { baseWidth } from '../UI/variables';
 
 export const DropdownTitle = styled.div`
   margin: 20px 0 5px;
@@ -35,6 +36,9 @@ export const DropdownContent = styled.div`
   border: 2px solid #aaaaaa;
   border-radius: 4px;
   padding: 8px 0 8px 10px;
+  @media (max-width: ${baseWidth.sm}) {
+    width: 150%;
+  }
 `;
 
 export const Dropdown = styled.div`
@@ -57,7 +61,6 @@ export const DropdownContextLink = styled.a`
   padding: 10px;
 
   display: flex;
-  /* justify-content: center; */
   align-items: center;
 
   color: #000000;

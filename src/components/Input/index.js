@@ -8,6 +8,7 @@ import {
   BirthdayTitle,
   BoxInputNumber,
   InputNumber,
+  BoxInputs,
 } from './BirthdayTemplate';
 import {
   BoxCertificateInput,
@@ -81,53 +82,54 @@ export const BirthdayInput = ({
 }) => (
   <BirthdayBox>
     <BirthdayTitle>Birthday *</BirthdayTitle>
+    <BoxInputs>
+      <BoxInputNumber>
+        <Label for="Day">Day</Label>
+        <InputNumber
+          value={day}
+          onChange={(e) => setDay(e.target.value)}
+          onBlur={() => setAge()}
+          id="Day"
+          placeholder="01"
+          min="01"
+          max="31"
+          required
+        />
+      </BoxInputNumber>
 
-    <BoxInputNumber>
-      <Label for="Day">Day</Label>
-      <InputNumber
-        value={day}
-        onChange={(e) => setDay(e.target.value)}
-        onBlur={() => setAge()}
-        id="Day"
-        placeholder="01"
-        min="01"
-        max="31"
-        required
-      />
-    </BoxInputNumber>
+      <BoxInputNumber>
+        <Label for="Month">Month</Label>
+        <InputNumber
+          value={month}
+          onChange={(e) => setMonth(e.target.value)}
+          onBlur={() => setAge()}
+          id="Month"
+          placeholder="01"
+          min="01"
+          max="12"
+          required
+        />
+      </BoxInputNumber>
 
-    <BoxInputNumber>
-      <Label for="Month">Month</Label>
-      <InputNumber
-        value={month}
-        onChange={(e) => setMonth(e.target.value)}
-        onBlur={() => setAge()}
-        id="Month"
-        placeholder="01"
-        min="01"
-        max="12"
-        required
-      />
-    </BoxInputNumber>
+      <BoxInputNumber>
+        <Label for="Year">Year</Label>
+        <InputNumber
+          value={year}
+          onChange={(e) => setYear(e.target.value)}
+          onBlur={() => setAge()}
+          id="Year"
+          placeholder="1911"
+          min="1911"
+          max="2021"
+          required
+        />
+      </BoxInputNumber>
 
-    <BoxInputNumber>
-      <Label for="Year">Year</Label>
-      <InputNumber
-        value={year}
-        onChange={(e) => setYear(e.target.value)}
-        onBlur={() => setAge()}
-        id="Year"
-        placeholder="1911"
-        min="1911"
-        max="2021"
-        required
-      />
-    </BoxInputNumber>
-
-    <BoxInputNumber>
-      <Label for="Age">Age</Label>
-      <Input value={age} id="Age" disabled />
-    </BoxInputNumber>
+      <BoxInputNumber>
+        <Label for="Age">Age</Label>
+        <Input value={age} id="Age" disabled />
+      </BoxInputNumber>
+    </BoxInputs>
   </BirthdayBox>
 );
 

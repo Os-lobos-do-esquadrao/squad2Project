@@ -6,27 +6,22 @@ import { bindActionCreators } from 'redux';
 import * as actions from '../store/actions';
 // * Template * //
 import {
+  TableBox,
   Table,
   Th,
   Td,
   P,
   TextContent,
-} from '../components/Table/TableTemplate';
-import {
-  DropdownTitle,
-  DropdownContent,
-  Dropdown,
-  DropdownContentText,
-  DropdownContextLink,
   HeartBox,
-} from '../components/Dropdown/DropdownTemplate';
+} from '../components/Table/TableTemplate';
+// import { HeartBox } from '../components/Dropdown/DropdownTemplate';
 import { Button } from '../components/Buttons/ButtonTemplate';
 // * Icon * //
 import { ChevronRight, Heart } from 'react-feather';
 
 const FourthPage = ({ infosForms, setPage, reset }) => {
   return (
-    <div style={{ position: 'relative', height: '700px' }}>
+    <TableBox>
       <Table>
         <thead>
           <tr>
@@ -82,7 +77,7 @@ const FourthPage = ({ infosForms, setPage, reset }) => {
             <Td>
               {infosForms.certificateList.map((certificate, index) => {
                 return (
-                  <TextContent>
+                  <TextContent key={index}>
                     <P>{certificate[0]}</P>
                     <HeartBox>
                       <Heart
@@ -124,7 +119,7 @@ const FourthPage = ({ infosForms, setPage, reset }) => {
         OK
         <ChevronRight size={20} />
       </Button>
-    </div>
+    </TableBox>
   );
 };
 

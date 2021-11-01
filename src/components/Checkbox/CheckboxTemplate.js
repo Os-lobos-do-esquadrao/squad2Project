@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { baseWidth } from '../UI/variables';
 
 export const BoxCheckbox = styled.label`
   margin-top: 41px;
@@ -6,6 +7,9 @@ export const BoxCheckbox = styled.label`
   align-items: center;
   width: 100%;
   height: 28px;
+  @media (max-width: ${baseWidth.sm}) {
+    margin-top: 20px;
+  }
 `;
 
 export const LabelCheckbox = styled.span`
