@@ -14,21 +14,19 @@ export const BoxCheckbox = styled.label`
 
 export const LabelCheckbox = styled.span`
   position: static;
-  /* width: 214px; */
-  /* width: 100%; */
   height: 18px;
   font-family: 'Nunito', sans-serif;
   font-size: 18px;
   line-height: 18px;
-  color: #111111;
-  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.5));
+  color: ${({ theme }) => theme.textHeader};
+  filter: ${({ theme }) => `drop-shadow(0px 4px 4px ${theme.shadow})`}; ;
 `;
 
 export const CheckboxContainer = styled.div`
   display: inline-block;
   vertical-align: middle;
   margin-right: 8px;
-  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.5));
+  filter: ${({ theme }) => `drop-shadow(0px 4px 4px ${theme.shadow})`}; ;
 `;
 
 export const Icon = styled.svg`
@@ -54,11 +52,12 @@ export const StyledCheckbox = styled.div`
   display: inline-block;
   width: 25px;
   height: 25px;
-  background: ${(props) => (props.checked ? '#074ee8' : '#aaaaaa')};
+  background: ${({ checked, theme }) =>
+    checked ? theme.primary : theme.border};
   border-radius: 3px;
   transition: all 150ms;
 
   ${Icon} {
-    visibility: ${(props) => (props.checked ? 'visible' : 'hidden')};
+    visibility: ${({ checked }) => (checked ? 'visible' : 'hidden')};
   }
 `;

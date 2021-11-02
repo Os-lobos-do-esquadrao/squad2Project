@@ -6,9 +6,10 @@ export const DropdownTitle = styled.div`
   width: 200px;
   height: 40px;
 
-  background: #ffffff;
+  background: ${({ theme }) => theme.inputBackground};
+  border: ${({ theme }) => `2px solid ${theme.border}`};
+  color: ${({ theme }) => theme.textHeader};
 
-  border: 2px solid #aaaaaa;
   box-sizing: border-box;
   border-radius: 4px;
   padding: 0px 12px;
@@ -32,8 +33,8 @@ export const DropdownContent = styled.div`
   font-family: 'Nunito';
   font-size: 14px;
   line-height: 20px;
-  background: #ffffff;
-  border: 2px solid #aaaaaa;
+  background: ${({ theme }) => theme.inputBackground};
+  border: ${({ theme }) => `2px solid ${theme.border}`};
   border-radius: 4px;
   padding: 8px 0 8px 10px;
   @media (max-width: ${baseWidth.sm}) {
@@ -54,7 +55,11 @@ export const DropdownContentText = styled.p`
   white-space: nowrap;
   text-overflow: ellipsis;
   margin: 0 20px 0 0;
+  width: 80%;
   text-align: justify;
+  @media (max-width: ${baseWidth.sm}) {
+    width: 80%;
+  }
 `;
 
 export const DropdownContextLink = styled.a`
@@ -62,8 +67,7 @@ export const DropdownContextLink = styled.a`
 
   display: flex;
   align-items: center;
-
-  color: #000000;
+  color: ${({ theme }) => theme.textHeader};
   text-decoration: none;
   cursor: pointer;
 `;

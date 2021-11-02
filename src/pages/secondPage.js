@@ -18,7 +18,10 @@ const SecondPage = ({ infosForms, setInfosForms, setPage }) => {
   // * States * //
   const [linkedin, setLinkedin] = useState('');
   const [github, setGithub] = useState('');
-
+  const [error, setError] = useState({
+    linkedin: [false, ''],
+    github: [false, ''],
+  });
   // * Effect * //
   useEffect(() => {
     if (navValidation(infosForms)) {

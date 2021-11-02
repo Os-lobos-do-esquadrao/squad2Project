@@ -66,8 +66,8 @@ export const DropdownContextLink = styled.a`
 `;
 
 export const BoxCertificateInput = styled.div`
-  background: #ffffff;
-  border: 2px solid #aaaaaa;
+  background: ${({ theme }) => theme.inputBackground};
+  border: ${({ theme }) => `2px solid ${theme.border}`};
   border-radius: 4px;
   width: 100%;
   height: 45px;
@@ -76,28 +76,9 @@ export const BoxCertificateInput = styled.div`
   margin: 4px 0 0 0;
   position: relative;
   display: flex;
-  /* input:focus { */
-  /* outline: none; */
-  /* border: 2px solid black; */
-  /* } */
-  /* font-family: 'Arial';
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 5px;
-  border: 1px solid;
-  border-radius: 5px;
-  &:hover {
-    box-shadow: 1px 1px 1px thistle;
-  } */
 `;
 
 export const CertificateInput = styled.input`
-  /* flex: 1 0;
-  font-size: inherit;
-  background-color: transparent;
-  padding-left: 5px;
-  border: 0; */
   min-width: 50px;
   min-height: 25px;
   border: none;
@@ -107,6 +88,7 @@ export const CertificateInput = styled.input`
   text-indent: 10px;
   font-size: 17px;
   font-family: 'Nunito', sans-serif;
+  color: ${({ theme }) => theme.textHeader};
   &:focus {
     outline: none;
   }
@@ -118,15 +100,14 @@ export const ButtonMore = styled.div`
   width: 85px;
   height: 40px;
   margin-left: auto;
-  background: #074ee8;
+  background: ${({ theme }) => theme.primary};
   border-radius: 4px;
   display: flex;
 
   justify-content: center;
   align-items: center;
   padding: 0px 12px;
-
-  color: #ffffff;
+  color: ${({ theme }) => theme.buttonText};
   font-family: 'Nunito', sans-serif;
   text-align: center;
   cursor: pointer;

@@ -6,8 +6,8 @@ export const Alert = styled.div`
   align-items: center;
   justify-content: space-evenly;
   flex-direction: column;
-  color: black;
-  background-color: #ffffff;
+  color: ${({ theme }) => theme.textHeader};
+  background-color: ${({ theme }) => theme.form};
   width: 443px;
   height: 160px;
   position: absolute;
@@ -19,7 +19,7 @@ export const Alert = styled.div`
   font-size: 16px;
   font-family: Nunito, sans-serif;
   box-sizing: border-box;
-  border: 2px solid #aaaaaa;
+  border: ${({ theme }) => `2px solid ${theme.border}`};
   border-radius: 4px;
   opacity: 1;
   pointer-events: auto;
@@ -32,7 +32,7 @@ export const Alert = styled.div`
 `;
 
 export const AlertError = styled.p`
-  color: black;
+  color: ${({ theme }) => theme.textHeader};
   font-weight: 600;
   font-family: Inter, sans-serif;
   opacity: 1;
@@ -42,9 +42,9 @@ export const CloseAlert = styled.a`
   display: flex;
   justify-content: center;
   align-items: center;
-  color: white;
+  color: ${({ theme }) => theme.buttonText};
   text-decoration: none;
-  background-color: blue;
+  background-color: ${({ theme }) => theme.primary};
   width: 57px;
   height: 25px;
   border-radius: 4px;

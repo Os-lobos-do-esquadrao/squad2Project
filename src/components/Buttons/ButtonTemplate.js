@@ -11,10 +11,10 @@ export const Button = styled.button.attrs({ type: 'submit' })`
   padding: 0px 12px;
   width: 85px;
   height: 42px;
-  background: #074ee8;
+  background: ${({ theme }) => theme.primary};
   border-radius: 4px;
   border: none;
-  color: #ffffff;
+  color: ${({ theme }) => theme.buttonText};
   bottom: 0;
   right: 0;
   cursor: pointer;

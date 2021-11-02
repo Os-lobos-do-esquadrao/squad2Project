@@ -1,9 +1,19 @@
 // * React * //
 import React, { useEffect, useState } from 'react';
 // * Template * //
-import { Title, Nav, NavList, NavItem, NavLink } from './HeaderTemplate';
+import {
+  Content,
+  IconButton,
+  Title,
+  Nav,
+  NavList,
+  NavItem,
+  NavLink,
+} from './HeaderTemplate';
+// * Icon * //
+import { Sun, Moon } from 'react-feather';
 
-const Header = ({ page, setPage }) => {
+const Header = ({ page, setPage, theme, setTheme }) => {
   // * State * //
   const [show, setShow] = useState(false);
 
@@ -26,9 +36,16 @@ const Header = ({ page, setPage }) => {
     <header>
       <div>
         {' '}
-        <div>
+        <Content>
           <Title>{show ? 'Registered Data' : 'Team Sign Up'}</Title>
-        </div>
+          <IconButton onClick={() => setTheme(!theme)}>
+            {theme ? (
+              <Moon size={28} fill="white" />
+            ) : (
+              <Sun color="yellow" fill="yellow" size={28} />
+            )}
+          </IconButton>
+        </Content>
       </div>
       <Nav show={show}>
         <NavList>
