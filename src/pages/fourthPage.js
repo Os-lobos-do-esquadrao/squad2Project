@@ -14,12 +14,11 @@ import {
   TextContent,
   HeartBox,
 } from '../components/Table/TableTemplate';
-// import { HeartBox } from '../components/Dropdown/DropdownTemplate';
 import { Button } from '../components/Buttons/ButtonTemplate';
 // * Icon * //
 import { ChevronRight, Heart } from 'react-feather';
 
-const FourthPage = ({ infosForms, setPage, reset }) => {
+const FourthPage = ({ infosForms, setPage, reset, theme }) => {
   return (
     <TableBox>
       <Table>
@@ -75,15 +74,13 @@ const FourthPage = ({ infosForms, setPage, reset }) => {
           <tr>
             <Td>Cerficates</Td>
             <Td>
+              {console.log(theme)}
               {infosForms.certificateList.map((certificate, index) => {
                 return (
                   <TextContent key={index}>
                     <P>{certificate[0]}</P>
                     <HeartBox>
-                      <Heart
-                        color={certificate[1] ? 'red' : 'white'}
-                        fill={certificate[1] ? 'red' : 'white'}
-                      />
+                      {certificate[1] && <Heart color={'red'} fill={'red'} />}
                     </HeartBox>
                   </TextContent>
                 );

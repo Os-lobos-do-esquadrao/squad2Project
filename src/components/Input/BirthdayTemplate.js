@@ -11,7 +11,7 @@ export const BirthdayTitle = styled.h3`
   font-size: 16px;
   margin-bottom: 14px;
   line-height: 16px;
-  color: #767676;
+  color: ${({ theme }) => theme.label};
   text-align: justify;
 `;
 
@@ -34,8 +34,9 @@ export const BoxInputNumber = styled.div`
 `;
 
 export const InputNumber = styled.input.attrs({ type: 'number' })`
-  background: #ffffff;
-  border: 2px solid #aaaaaa;
+  background: ${({ theme }) => theme.inputBackground};
+  border: ${({ theme }) => `2px solid ${theme.border}`};
+  color: ${({ theme }) => theme.textHeader};
   box-sizing: border-box;
   border-radius: 4px;
   height: 45px;
@@ -52,5 +53,8 @@ export const InputNumber = styled.input.attrs({ type: 'number' })`
   &::-webkit-outer-spin-button {
     -webkit-appearance: none;
     margin: 0;
+  }
+  &:focus {
+    outline: none;
   }
 `;

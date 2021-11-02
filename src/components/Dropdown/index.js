@@ -12,7 +12,7 @@ import {
 // * Icon * //
 import { Plus, ChevronRight, ChevronDown, Heart } from 'react-feather';
 
-export const DropDown = ({ certificateList }) => (
+export const DropDown = ({ certificateList, theme }) => (
   <Dropdown>
     <DropdownTitle>
       <p>Certificates List</p>
@@ -26,10 +26,7 @@ export const DropDown = ({ certificateList }) => (
         <DropdownContextLink key={index} target="_blank" href={element[0]}>
           <DropdownContentText>{element[0]}</DropdownContentText>
           <HeartBox>
-            <Heart
-              color={element[1] ? 'red' : 'white'}
-              fill={element[1] ? 'red' : 'white'}
-            />
+            {element[1] && <Heart color={'red'} fill={'red'} />}
           </HeartBox>
         </DropdownContextLink>
       ))}

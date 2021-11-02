@@ -11,11 +11,15 @@ import FirstPage from './pages/firstPage';
 import SecondPage from './pages/secondPage';
 import ThirdPage from './pages/thirdPage';
 import FourthPage from './pages/fourthPage';
+// * Theme * //
+import { ThemeProvider } from 'styled-components';
+import { lightTheme, darkTheme } from './components/UI/theme';
 
 const App = () => {
   // * State * //
   const [page, setPage] = useState(0);
   const [showAlert, setShow] = useState(false);
+  const [theme, setTheme] = useState(true);
 
   const pages = [
     <FirstPage setPage={setPage} />,
@@ -26,17 +30,22 @@ const App = () => {
 
   // * Return * //
   return (
-    <>
+    <ThemeProvider theme={theme ? lightTheme : darkTheme}>
       <GlobalStyle />
       <BodyBackground>
         <FormBackground invisible={showAlert}>
-          <Header setPage={setPage} page={page} />
+          <Header
+            setPage={setPage}
+            page={page}
+            theme={theme}
+            setTheme={setTheme}
+          />
 
           {pages[page]}
         </FormBackground>
         {showAlert && <AlertPopup setShow={setShow} />}
       </BodyBackground>
-    </>
+    </ThemeProvider>
   );
 };
 

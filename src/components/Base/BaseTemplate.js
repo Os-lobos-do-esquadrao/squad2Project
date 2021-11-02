@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { baseWidth } from '../UI/variables';
 
 export const BodyBackground = styled.div`
-  background: #eceef2;
+  background: ${({ theme }) => theme.body};
 
   display: flex;
   align-self: center;
@@ -37,7 +37,7 @@ export const BodyBackground = styled.div`
 export const FormBackground = styled.div`
   width: 617px;
   height: 763px;
-  background: #ffffff;
+  background: ${({ theme }) => theme.form};
   border-radius: 20px;
   padding: 56px 50px;
   opacity: ${({ invisible }) => invisible && 0.3};

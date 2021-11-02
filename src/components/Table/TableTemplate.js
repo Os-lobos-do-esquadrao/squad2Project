@@ -25,6 +25,8 @@ export const Th = styled.th`
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+  color: ${({ theme }) => theme.textHeader};
+  font-weight: bold;
 `;
 
 export const Td = styled.td`
@@ -37,6 +39,8 @@ export const Td = styled.td`
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+  color: ${({ theme }) => theme.textHeader};
+  font-style: italic;
 `;
 
 export const P = styled.p`
@@ -44,13 +48,19 @@ export const P = styled.p`
   white-space: nowrap;
   text-overflow: ellipsis;
   width: 400px;
+  color: ${({ theme }) => theme.textHeader};
   font-family: 'Nunito', sans-serif;
+  font-style: normal;
+  @media (max-width: ${baseWidth.sm}) {
+    width: 80%;
+  }
 `;
 
 export const TextContent = styled.div`
   display: flex;
   align-items: center;
-  color: #000000;
+  font-style: normal;
+  color: ${({ theme }) => theme.textHeader};
   @media (max-width: ${baseWidth.sm}) {
     width: 35%;
   }

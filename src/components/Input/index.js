@@ -19,7 +19,13 @@ import {
 // * Component * //
 import { DropDown } from '../Dropdown/';
 // * Icon * //
-import { Plus, ChevronRight, ChevronDown, Heart } from 'react-feather';
+import {
+  Plus,
+  ChevronRight,
+  Heart,
+  AlertTriangle,
+  AlertCircle,
+} from 'react-feather';
 
 export const DefaultInput = ({
   id,
@@ -28,17 +34,42 @@ export const DefaultInput = ({
   value,
   setValue,
   required,
+  error,
+  setError,
 }) => {
   return (
-    <BoxInput>
+    <BoxInput error={error[0]}>
       <Label for={id}>{text}</Label>
       <Input
         value={value}
         onChange={(e) => setValue(e.target.value)}
+        onBlur={(e) => {
+          error[0] = e.target.value === '';
+          error[1] = e.target.value === '' ? 'Full Name is required' : '';
+          setError(error);
+        }}
         id={id}
         placeholder={placeholder}
         required={required}
+        error={error[0]}
       />
+      {error[0] && (
+        <span
+          style={{
+            margin: '4px 0 0 0 ',
+            color: 'red',
+            fontStyle: 'italic',
+            display: 'flex',
+            alignItems: 'center',
+            fontSize: '14px',
+            // justifyContent: 'center',
+          }}
+        >
+          {' '}
+          <AlertTriangle size={18} />{' '}
+          <span style={{ marginLeft: '8px' }}>{error[1]}</span>
+        </span>
+      )}
     </BoxInput>
   );
 };
@@ -156,7 +187,7 @@ export const CertificateBox = ({
         <Heart
           size={30}
           color={heart ? 'red' : 'grey'}
-          fill={heart ? 'red' : 'white'}
+          fill={heart ? 'red' : 'grey'}
         />
       </ButtonHeart>
     </BoxCertificateInput>
