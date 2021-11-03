@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { baseWidth } from '../UI/variables';
 
 export const DropdownTitle = styled.div`
-  margin: 20px 0 5px;
+  margin: 20px 0 0px;
   width: 200px;
   height: 40px;
 
@@ -27,6 +27,7 @@ export const DropdownTitle = styled.div`
 `;
 
 export const DropdownContent = styled.div`
+  margin-top: 5px;
   display: none;
   position: absolute;
   width: 400px;

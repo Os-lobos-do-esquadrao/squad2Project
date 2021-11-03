@@ -19,7 +19,10 @@ export const LabelCheckbox = styled.span`
   font-size: 18px;
   line-height: 18px;
   color: ${({ theme }) => theme.textHeader};
-  filter: ${({ theme }) => `drop-shadow(0px 4px 4px ${theme.shadow})`}; ;
+  filter: ${({ theme }) => `drop-shadow(0px 4px 4px ${theme.shadow})`};
+  @media (max-width: ${baseWidth.sm}) {
+    font-size: 15px;
+  }
 `;
 
 export const CheckboxContainer = styled.div`
@@ -59,5 +62,9 @@ export const StyledCheckbox = styled.div`
 
   ${Icon} {
     visibility: ${({ checked }) => (checked ? 'visible' : 'hidden')};
+  }
+  @media (max-width: ${baseWidth.sm}) {
+    width: 20px;
+    height: 20px;
   }
 `;

@@ -18,7 +18,7 @@ export function calcAge(day, month, year) {
     if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
       age--;
     }
-    if (age >= 0 && age <= 110) {
+    if (age >= 0 && age < 110) {
       return age;
     } else {
       return 'Invalid Age';

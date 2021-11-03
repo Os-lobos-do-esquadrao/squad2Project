@@ -13,6 +13,8 @@ import {
   P,
   TextContent,
   HeartBox,
+  PCertificate,
+  TdField,
 } from '../components/Table/TableTemplate';
 import { Button } from '../components/Buttons/ButtonTemplate';
 // * Icon * //
@@ -30,54 +32,54 @@ const FourthPage = ({ infosForms, setPage, reset, theme }) => {
         </thead>
         <tbody>
           <tr>
-            <Td>Full Name</Td>
+            <TdField>Full Name</TdField>
             <Td>
               <P>{infosForms.fullName}</P>
             </Td>
           </tr>
           <tr>
-            <Td>Nickname</Td>
+            <TdField>Nickname</TdField>
             <Td>
               <P>{infosForms.nickName}</P>
             </Td>
           </tr>
           <tr>
-            <Td>Email</Td>
+            <TdField>Email</TdField>
             <Td>
               <P>{infosForms.email}</P>
             </Td>
           </tr>
           <tr>
-            <Td>Phone</Td>
+            <TdField>Phone</TdField>
             <Td>
               <P>{infosForms.phone}</P>
             </Td>
           </tr>
           <tr>
-            <Td>Birthday</Td>
+            <TdField>Birthday</TdField>
             <Td>
               <P>{infosForms.birthday}</P>
             </Td>
           </tr>
           <tr>
-            <Td>Linkedin</Td>
+            <TdField>Linkedin</TdField>
             <Td>
               <P>{infosForms.linkedin}</P>
             </Td>
           </tr>
           <tr>
-            <Td>Github</Td>
+            <TdField>Github</TdField>
             <Td>
               <P>{infosForms.github}</P>
             </Td>
           </tr>
           <tr>
-            <Td>Cerficates</Td>
+            <TdField>Cerficates</TdField>
             <Td>
               {infosForms.certificateList.map((certificate, index) => {
                 return (
                   <TextContent key={index}>
-                    <P>{certificate[0]}</P>
+                    <PCertificate>{certificate[0]}</PCertificate>
                     <HeartBox>
                       {certificate[1] && <Heart color={'red'} fill={'red'} />}
                     </HeartBox>
@@ -87,19 +89,19 @@ const FourthPage = ({ infosForms, setPage, reset, theme }) => {
             </Td>
           </tr>
           <tr>
-            <Td>Team Name</Td>
+            <TdField>Team Name</TdField>
             <Td>
               <P>{infosForms.teamName}</P>
             </Td>
           </tr>
           <tr>
-            <Td>Institution</Td>
+            <TdField>Institution</TdField>
             <Td>
               <P>{infosForms.institution}</P>
             </Td>
           </tr>
           <tr>
-            <Td>Graduation</Td>
+            <TdField>Graduation</TdField>
             <Td>
               <P>{infosForms.graduation}</P>
             </Td>

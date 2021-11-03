@@ -167,7 +167,7 @@ export const CertificateBox = ({
       </ButtonHeart>
     </BoxCertificateInput>
 
-    <div style={{ display: 'flex', marginBottom: '30px' }}>
+    <div style={{ display: 'flex', marginBottom: '35px' }}>
       {certificateList.length !== 0 && (
         <DropDown certificateList={certificateList} />
       )}
