@@ -9,20 +9,13 @@ export const BodyBackground = styled.div`
   justify-content: center;
   float: none;
   overflow-x: hidden;
-  overflow-y: hidden;
 
   @media (min-width: ${baseWidth.lg}) {
     padding-top: 4%;
     height: 100%;
   }
 
-  @media (max-width: ${baseWidth.lg}) and (min-width: ${baseWidth.md}) {
-    height: 100%;
-    padding-top: 4%;
-    padding-bottom: 4%;
-  }
-
-  @media (max-width: ${baseWidth.md}) and (min-width: ${baseWidth.sm}) {
+  @media (max-width: ${baseWidth.lg}) and (min-width: ${baseWidth.sm}) {
     height: 100%;
     padding-top: 4%;
     padding-bottom: 4%;
@@ -45,16 +38,12 @@ export const FormBackground = styled.div`
 
   @media (max-width: ${baseWidth.sm}) {
     width: 90%;
+    padding: 80px 50px;
     height: 100%;
-    padding: 20px 50px 0;
   }
 `;
 
 export const Form = styled.form`
   height: 600px;
   position: relative;
-
-  @media (max-width: ${baseWidth.sm}) {
-    height: 680px;
-  }
 `;

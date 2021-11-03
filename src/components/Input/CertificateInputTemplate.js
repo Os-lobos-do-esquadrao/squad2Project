@@ -57,7 +57,6 @@ export const DropdownContextLink = styled.a`
   padding: 10px;
 
   display: flex;
-  /* justify-content: center; */
   align-items: center;
 
   color: #000000;
@@ -135,5 +134,4 @@ export const ButtonHeart = styled.button.attrs({ type: 'button' })`
     align-items: center;
     justify-content: center;
   }
-  /* border: 1px solid red; */
 `;

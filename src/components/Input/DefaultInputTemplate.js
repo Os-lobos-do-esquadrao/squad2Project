@@ -2,13 +2,9 @@ import styled from 'styled-components';
 import { baseWidth } from '../UI/variables';
 
 export const BoxInput = styled.div`
-  /* margin: ${({ error }) =>
-    error ? '0px 0px 26px 0px' : '0px 0px 48px 0px'}; */
   margin: 0px 0px 48px 0px;
   width: 100%;
   @media (max-width: ${baseWidth.sm}) {
-    /* margin: ${({ error }) =>
-      error ? '0px 0px 2px 0px' : '0px 0px 24px 0px'}; */
     margin: 0px 0px 24px 0px;
   }
 `;
