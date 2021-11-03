@@ -33,18 +33,6 @@ const FirstPage = ({ infosForms, setInfosForms, setPage }) => {
     age: '',
   });
   const [check, setCheck] = useState(false);
-  const [error, setError] = useState({
-    fullName: [false, ''],
-    nickName: [false, ''],
-    email: [false, ''],
-    phone: [false, ''],
-    birthday: {
-      day: [false, ''],
-      month: [false, ''],
-      year: [false, ''],
-      age: [false, ''],
-    },
-  });
 
   // * Functions * //
   const setAge = () => {
@@ -96,9 +84,6 @@ const FirstPage = ({ infosForms, setInfosForms, setPage }) => {
       setInfosForms(infoData);
     }
   };
-  const changeError = (error_list) => {
-    setError({ ...error, error_list });
-  };
 
   // * Effect * //
   useEffect(() => {
@@ -132,8 +117,6 @@ const FirstPage = ({ infosForms, setInfosForms, setPage }) => {
         value={fullName}
         text="Full Name *"
         required={true}
-        error={error.fullName}
-        setError={changeError}
       />
 
       <DefaultInput
@@ -143,8 +126,6 @@ const FirstPage = ({ infosForms, setInfosForms, setPage }) => {
         value={nickName}
         text="Nickname"
         required={false}
-        error={error.nickName}
-        setError={changeError}
       />
 
       <EmailPhoneInput
@@ -152,9 +133,6 @@ const FirstPage = ({ infosForms, setInfosForms, setPage }) => {
         phone={phone}
         setEmail={setEmail}
         phoneMask={setMask}
-        errorEmail={error.email}
-        errorPhone={error.phone}
-        setError={changeError}
       />
 
       <BirthdayInput
@@ -166,11 +144,6 @@ const FirstPage = ({ infosForms, setInfosForms, setPage }) => {
         setMonth={handleMonth}
         setYear={handleYear}
         setAge={setAge}
-        errorDay={error.birthday.day}
-        errorMonth={error.birthday.month}
-        errorYear={error.birthday.year}
-        errorAge={error.birthday.age}
-        setError={changeError}
       />
 
       <Checkbox data={infosForms.check} checked={check} setCheck={setCheck} />

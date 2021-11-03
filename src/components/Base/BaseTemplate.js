@@ -55,6 +55,6 @@ export const Form = styled.form`
   position: relative;
 
   @media (max-width: ${baseWidth.sm}) {
-    height: 100%;
+    height: 680px;
   }
 `;

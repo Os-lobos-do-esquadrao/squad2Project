@@ -31,7 +31,7 @@ export const lightShadow = 'rgba(0, 0, 0, 0.5)';
 
 // * Dark Base Color * //
 export const darkPrimaryColor = '#0089fa';
-export const darkDangerColor = '#dc3545';
+export const darkDangerColor = '#E04E5C';
 
 // * Dark Page Color * //
 export const darkBackground = '#3e3e3e';

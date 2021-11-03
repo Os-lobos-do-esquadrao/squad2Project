@@ -22,9 +22,4 @@ export const Button = styled.button.attrs({ type: 'submit' })`
   p {
     margin-right: auto;
   }
-
-  @media (max-width: ${baseWidth.sm}) {
-    position: relative;
-    margin: 20px 0 20px auto;
-  }
 `;
