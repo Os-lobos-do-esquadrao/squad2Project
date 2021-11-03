@@ -130,7 +130,7 @@ table {
   border-spacing: 0;
 }
 
-/* html,
+html,
 body {
   height: 100%;
   width: 100%;
@@ -138,6 +138,6 @@ body {
 #root {
   height: 100%;
   width: 100%;
-} */
+}
 
 `;

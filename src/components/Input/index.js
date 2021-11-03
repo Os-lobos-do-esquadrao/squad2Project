@@ -34,42 +34,17 @@ export const DefaultInput = ({
   value,
   setValue,
   required,
-  error,
-  setError,
 }) => {
   return (
-    <BoxInput error={error[0]}>
+    <BoxInput>
       <Label for={id}>{text}</Label>
       <Input
         value={value}
         onChange={(e) => setValue(e.target.value)}
-        onBlur={(e) => {
-          error[0] = e.target.value === '';
-          error[1] = e.target.value === '' ? 'Full Name is required' : '';
-          setError(error);
-        }}
         id={id}
         placeholder={placeholder}
         required={required}
-        error={error[0]}
       />
-      {error[0] && (
-        <span
-          style={{
-            margin: '4px 0 0 0 ',
-            color: 'red',
-            fontStyle: 'italic',
-            display: 'flex',
-            alignItems: 'center',
-            fontSize: '14px',
-            // justifyContent: 'center',
-          }}
-        >
-          {' '}
-          <AlertTriangle size={18} />{' '}
-          <span style={{ marginLeft: '8px' }}>{error[1]}</span>
-        </span>
-      )}
     </BoxInput>
   );
 };

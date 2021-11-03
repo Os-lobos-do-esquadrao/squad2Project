@@ -74,7 +74,6 @@ const FourthPage = ({ infosForms, setPage, reset, theme }) => {
           <tr>
             <Td>Cerficates</Td>
             <Td>
-              {console.log(theme)}
               {infosForms.certificateList.map((certificate, index) => {
                 return (
                   <TextContent key={index}>

@@ -26,13 +26,15 @@ const ThirdPage = ({ infosForms, setInfosForms, setPage, setShow }) => {
 
   // * Functions * //
   const moreFunction = () => {
-    let aux = moreCertificate(certificate, certificateList, heart);
-    if (aux) {
-      setList(aux);
-      setCertificate('');
-      heart && setHeart(!heart);
-    } else {
-      setShow(true);
+    if (certificate !== '') {
+      let aux = moreCertificate(certificate, certificateList, heart);
+      if (aux) {
+        setList(aux);
+        setCertificate('');
+        heart && setHeart(!heart);
+      } else {
+        setShow(true);
+      }
     }
   };
 
