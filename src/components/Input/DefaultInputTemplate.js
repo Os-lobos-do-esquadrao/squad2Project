@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { baseWidth } from '../UI/variables';
 
 export const BoxInput = styled.div`
-  margin: 0px 0px 48px 0px;
+  margin: ${({ error }) => (error ? '0px 0px 22px 0px' : '0px 0px 48px 0px')};
   width: 100%;
   @media (max-width: ${baseWidth.sm}) {
     margin: 0px 0px 24px 0px;
@@ -18,7 +18,8 @@ export const Label = styled.label`
 
 export const Input = styled.input`
   background: ${({ theme }) => theme.inputBackground};
-  border: ${({ theme }) => `2px solid ${theme.border}`};
+  border: ${({ theme, error }) =>
+    `2px solid ${error ? theme.danger : theme.border}`};
   color: ${({ theme }) => theme.textHeader};
   box-sizing: border-box;
   border-radius: 4px;

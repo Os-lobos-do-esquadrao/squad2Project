@@ -8,15 +8,16 @@ export const BodyBackground = styled.div`
   align-self: center;
   justify-content: center;
   float: none;
+
   overflow-x: hidden;
 
   @media (min-width: ${baseWidth.lg}) {
     padding-top: 4%;
-    height: 100%;
+    height: auto;
   }
 
   @media (max-width: ${baseWidth.lg}) and (min-width: ${baseWidth.sm}) {
-    height: 100%;
+    height: 900px;
     padding-top: 4%;
     padding-bottom: 4%;
   }

@@ -1,5 +1,9 @@
 // * React * //
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+// * Context * //
+import { Context } from '../context/errorContext';
+// * Hooks * //
+import useErros from '../hooks/useErros';
 // * Redux * //
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -11,11 +15,12 @@ import { Form } from '../components/Base/BaseTemplate';
 import { DefaultInput, CertificateBox } from '../components/Input';
 // * Function * //
 import { moreCertificate } from '../functions/thirdPage';
-import { navValidation } from '../functions/validations';
+import { NavValidation } from '../functions/validations';
 // * Icon * //
 import { Check } from 'react-feather';
 
 const ThirdPage = ({ infosForms, setInfosForms, setPage, setShow }) => {
+  const validations = useContext(Context);
   // * States * //
   const [certificate, setCertificate] = useState('');
   const [heart, setHeart] = useState(false);
@@ -23,6 +28,15 @@ const ThirdPage = ({ infosForms, setInfosForms, setPage, setShow }) => {
   const [teamName, setTeamName] = useState('');
   const [institution, setInstitution] = useState('');
   const [graduation, setGraduation] = useState('');
+  const [error, validateField, requiredValidation] = useErros(
+    {
+      certificate,
+      teamName,
+      graduation,
+      institution,
+    },
+    validations
+  );
 
   // * Functions * //
   const moreFunction = () => {
@@ -40,7 +54,7 @@ const ThirdPage = ({ infosForms, setInfosForms, setPage, setShow }) => {
 
   // * Effect * //
   useEffect(() => {
-    if (navValidation(infosForms)) {
+    if (NavValidation(infosForms)) {
       infosForms.github === undefined && setPage(1);
     } else {
       setPage(0);
@@ -77,6 +91,10 @@ const ThirdPage = ({ infosForms, setInfosForms, setPage, setShow }) => {
         value={teamName}
         text="Team Name *"
         required={true}
+        error={error.teamName}
+        validateField={validateField}
+        name={'teamName'}
+        requiredValidation={requiredValidation}
       />
       <DefaultInput
         id="Institution"
@@ -85,6 +103,10 @@ const ThirdPage = ({ infosForms, setInfosForms, setPage, setShow }) => {
         value={institution}
         text="Institution *"
         required={true}
+        error={error.institution}
+        validateField={validateField}
+        name={'institution'}
+        requiredValidation={requiredValidation}
       />
       <DefaultInput
         id="Graduation"
@@ -93,8 +115,12 @@ const ThirdPage = ({ infosForms, setInfosForms, setPage, setShow }) => {
         value={graduation}
         text="Graduation *"
         required={true}
+        error={error.graduation}
+        validateField={validateField}
+        name={'graduation'}
+        requiredValidation={requiredValidation}
       />
-      <Button>
+      <Button disabled={JSON.stringify(error).includes(false)}>
         {' '}
         <Check size={20} /> <p>Finish</p>
       </Button>

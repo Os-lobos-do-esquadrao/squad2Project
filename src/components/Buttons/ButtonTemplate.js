@@ -17,8 +17,8 @@ export const Button = styled.button.attrs({ type: 'submit' })`
   color: ${({ theme }) => theme.buttonText};
   bottom: 0;
   right: 0;
-  cursor: pointer;
-
+  cursor: ${({ disabled }) => (disabled ? 'auto' : 'pointer')};
+  opacity: ${({ disabled }) => (disabled ? 0.5 : 1)};
   p {
     margin-right: auto;
   }

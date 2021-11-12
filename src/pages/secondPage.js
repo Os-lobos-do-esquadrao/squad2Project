@@ -1,5 +1,9 @@
 // * React * //
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+// * Context * //
+import { Context } from '../context/errorContext';
+// * Hooks * //
+import useErros from '../hooks/useErros';
 // * Redux * //
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -10,21 +14,26 @@ import { Form } from '../components/Base/BaseTemplate';
 // * Component * //
 import { DefaultInput } from '../components/Input';
 // * Function * //
-import { navValidation } from '../functions/validations';
+import { NavValidation } from '../functions/validations';
 // * Icon * //
 import { ChevronRight } from 'react-feather';
 
 const SecondPage = ({ infosForms, setInfosForms, setPage }) => {
+  const validations = useContext(Context);
   // * States * //
   const [linkedin, setLinkedin] = useState('');
   const [github, setGithub] = useState('');
-  const [error, setError] = useState({
-    linkedin: [false, ''],
-    github: [false, ''],
-  });
+  const [error, validateField, requiredValidation] = useErros(
+    {
+      linkedin,
+      github,
+    },
+    validations
+  );
+
   // * Effect * //
   useEffect(() => {
-    if (navValidation(infosForms)) {
+    if (NavValidation(infosForms)) {
       setLinkedin(infosForms.linkedin);
       setGithub(infosForms.github);
     } else {
@@ -48,6 +57,9 @@ const SecondPage = ({ infosForms, setInfosForms, setPage }) => {
         value={linkedin}
         text="Linkedin"
         required={false}
+        error={error.linkedin}
+        validateField={validateField}
+        name={'linkedin'}
       />
       <DefaultInput
         id="Github"
@@ -56,8 +68,12 @@ const SecondPage = ({ infosForms, setInfosForms, setPage }) => {
         value={github}
         text="Github *"
         required={true}
+        error={error.github}
+        validateField={validateField}
+        name={'github'}
+        requiredValidation={requiredValidation}
       />
-      <Button>
+      <Button disabled={JSON.stringify(error).includes(false)}>
         <p>Next</p>
         <ChevronRight size={20} />
       </Button>

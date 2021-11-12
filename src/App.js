@@ -4,6 +4,8 @@ import React, { useState } from 'react';
 import { BodyBackground, FormBackground } from './components/Base/BaseTemplate';
 import Header from './components/Header';
 import AlertPopup from './components/Alert';
+// * Context * //
+import { ErrorContextProvider } from './context/errorContext';
 // * GlobalStyle * //
 import { GlobalStyle } from './assets/GlobalStyle';
 // * Page * //
@@ -32,19 +34,21 @@ const App = () => {
   return (
     <ThemeProvider theme={theme ? lightTheme : darkTheme}>
       <GlobalStyle />
-      <BodyBackground>
-        <FormBackground invisible={showAlert}>
-          <Header
-            setPage={setPage}
-            page={page}
-            theme={theme}
-            setTheme={setTheme}
-          />
+      <ErrorContextProvider>
+        <BodyBackground>
+          <FormBackground invisible={showAlert}>
+            <Header
+              setPage={setPage}
+              page={page}
+              theme={theme}
+              setTheme={setTheme}
+            />
 
-          {pages[page]}
-        </FormBackground>
-        {showAlert && <AlertPopup setShow={setShow} />}
-      </BodyBackground>
+            {pages[page]}
+          </FormBackground>
+          {showAlert && <AlertPopup setShow={setShow} />}
+        </BodyBackground>
+      </ErrorContextProvider>
     </ThemeProvider>
   );
 };

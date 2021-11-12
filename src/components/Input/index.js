@@ -16,6 +16,7 @@ import {
   ButtonHeart,
   ButtonMore,
 } from './CertificateInputTemplate';
+import { ErrorBox, ErrorSpan } from '../Error/ErrorTemplate';
 // * Component * //
 import { DropDown } from '../Dropdown/';
 // * Icon * //
@@ -34,43 +35,103 @@ export const DefaultInput = ({
   value,
   setValue,
   required,
+  name,
+  error,
+  validateField,
+  requiredValidation = function () {},
 }) => {
   return (
-    <BoxInput>
+    <BoxInput error={!error.valid}>
       <Label for={id}>{text}</Label>
       <Input
+        error={!error.valid}
         value={value}
+        name={name}
         onChange={(e) => setValue(e.target.value)}
+        onBlur={(e) => {
+          if (required) {
+            if (e.target.value !== '') {
+              validateField(e);
+            } else {
+              requiredValidation(e);
+            }
+          } else {
+            validateField(e);
+          }
+        }}
         id={id}
         placeholder={placeholder}
         required={required}
       />
+      {!error.valid && (
+        <ErrorBox>
+          <AlertCircle /> <ErrorSpan> {error.message}</ErrorSpan>
+        </ErrorBox>
+      )}
     </BoxInput>
   );
 };
 
-export const EmailPhoneInput = ({ email, setEmail, phone, phoneMask }) => (
-  <BoxInput>
+export const EmailPhoneInput = ({
+  email,
+  setEmail,
+  phone,
+  phoneMask,
+  phoneName,
+  emailName,
+  errorPhone,
+  errorEmail,
+  validateField,
+  requiredValidation,
+}) => (
+  <BoxInput error={!errorPhone.valid || !errorEmail.valid}>
     <BoxEmailPhone>
       <BoxEmail>
         <Label for="Email">Email *</Label>
         <Input
+          error={!errorEmail.valid}
           value={email}
+          name={emailName}
           onChange={(e) => setEmail(e.target.value)}
+          onBlur={(e) => {
+            if (e.target.value !== '') {
+              validateField(e);
+            } else {
+              requiredValidation(e);
+            }
+          }}
           id="Email"
           type="email"
           placeholder="foo@bar.com"
           required
         />
+        {!errorEmail.valid && (
+          <ErrorBox>
+            <AlertCircle /> <ErrorSpan> {errorEmail.message}</ErrorSpan>
+          </ErrorBox>
+        )}
       </BoxEmail>
+
       <BoxPhone>
         <Label for="Phone">Phone</Label>
         <Input
-          onChange={(e) => phoneMask(e)}
+          error={!errorPhone.valid}
           value={phone}
+          name={phoneName}
+          onChange={(e) => phoneMask(e)}
+          onBlur={(e) => {
+            if (e.target.value !== '') {
+              validateField(e);
+            }
+          }}
           id="Phone"
           placeholder="(83) 00000-0000"
         />
+        {!errorPhone.valid && (
+          <ErrorBox>
+            <AlertCircle /> <ErrorSpan> {errorPhone.message}</ErrorSpan>
+          </ErrorBox>
+        )}
       </BoxPhone>
     </BoxEmailPhone>
   </BoxInput>
@@ -85,6 +146,12 @@ export const BirthdayInput = ({
   setMonth,
   setYear,
   setAge,
+  dayName,
+  monthName,
+  yearName,
+  errorBirthday,
+  validateField,
+  requiredValidation,
 }) => (
   <BirthdayBox>
     <BirthdayTitle>Birthday *</BirthdayTitle>
@@ -94,11 +161,15 @@ export const BirthdayInput = ({
         <InputNumber
           value={day}
           onChange={(e) => setDay(e.target.value)}
-          onBlur={() => setAge()}
+          onBlur={(e) => {
+            setAge();
+            // validateField(`${e.target.value}/${month}/${year}`);
+          }}
           id="Day"
           placeholder="01"
           min="01"
           max="31"
+          name={dayName}
           required
         />
       </BoxInputNumber>
@@ -113,6 +184,7 @@ export const BirthdayInput = ({
           placeholder="01"
           min="01"
           max="12"
+          name={monthName}
           required
         />
       </BoxInputNumber>
@@ -127,6 +199,7 @@ export const BirthdayInput = ({
           placeholder="1911"
           min="1911"
           max="2021"
+          name={yearName}
           required
         />
       </BoxInputNumber>
@@ -136,6 +209,11 @@ export const BirthdayInput = ({
         <Input value={age} id="Age" disabled />
       </BoxInputNumber>
     </BoxInputs>
+    {!errorBirthday.valid && (
+      <ErrorBox>
+        <AlertCircle /> <ErrorSpan> {errorBirthday.message}</ErrorSpan>
+      </ErrorBox>
+    )}
   </BirthdayBox>
 );
 

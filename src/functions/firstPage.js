@@ -3,7 +3,14 @@ export function phoneMask(e) {
   let phone_aux = e.target.value
     .replace(/\D/g, '')
     .match(/(\d{0,2})(\d{0,5})(\d{0,4})/);
-  let phone = `(${phone_aux[1]}) ${phone_aux[2]}-${phone_aux[3]}`;
+
+  let phone = (e.target.value = !phone_aux[2]
+    ? phone_aux[1]
+    : '(' +
+      phone_aux[1] +
+      ') ' +
+      phone_aux[2] +
+      (phone_aux[3] ? '-' + phone_aux[3] : ''));
   return phone;
 }
 

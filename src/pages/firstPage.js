@@ -1,5 +1,9 @@
 // * React * //
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+// * Context * //
+import { Context } from '../context/errorContext';
+// * Hooks * //
+import useErros from '../hooks/useErros';
 // * Redux * //
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -16,11 +20,12 @@ import {
 import { Checkbox } from '../components/Checkbox';
 // * Function * //
 import { phoneMask, calcAge } from '../functions/firstPage';
-import { navValidation } from '../functions/validations';
+import { NavValidation } from '../functions/validations';
 // * Icon * //
-import { ChevronRight, AlertTriangle, AlertCircle } from 'react-feather';
+import { ChevronRight } from 'react-feather';
 
 const FirstPage = ({ infosForms, setInfosForms, setPage }) => {
+  const validations = useContext(Context);
   // * States * //
   const [fullName, setName] = useState('');
   const [nickName, setNickname] = useState('');
@@ -33,7 +38,17 @@ const FirstPage = ({ infosForms, setInfosForms, setPage }) => {
     age: '',
   });
   const [check, setCheck] = useState(false);
-
+  const [error, validateField, requiredValidation] = useErros(
+    {
+      fullName,
+      nickName,
+      email,
+      phone,
+      birthday,
+    },
+    validations
+  );
+  console.log(JSON.stringify(error).includes(false));
   // * Functions * //
   const setAge = () => {
     const day = birthday.day;
@@ -69,7 +84,7 @@ const FirstPage = ({ infosForms, setInfosForms, setPage }) => {
       check,
     };
     setPage(1);
-    if (navValidation(infosForms)) {
+    if (NavValidation(infosForms)) {
       setInfosForms({
         ...infosForms,
         fullName,
@@ -87,7 +102,7 @@ const FirstPage = ({ infosForms, setInfosForms, setPage }) => {
 
   // * Effect * //
   useEffect(() => {
-    if (navValidation(infosForms)) {
+    if (NavValidation(infosForms)) {
       setName(infosForms.fullName);
       setNickname(infosForms.nickName);
       setEmail(infosForms.email);
@@ -117,6 +132,10 @@ const FirstPage = ({ infosForms, setInfosForms, setPage }) => {
         value={fullName}
         text="Full Name *"
         required={true}
+        name={'fullName'}
+        error={error.fullName}
+        validateField={validateField}
+        requiredValidation={requiredValidation}
       />
 
       <DefaultInput
@@ -126,6 +145,9 @@ const FirstPage = ({ infosForms, setInfosForms, setPage }) => {
         value={nickName}
         text="Nickname"
         required={false}
+        name={'nickName'}
+        error={error.nickName}
+        validateField={validateField}
       />
 
       <EmailPhoneInput
@@ -133,6 +155,12 @@ const FirstPage = ({ infosForms, setInfosForms, setPage }) => {
         phone={phone}
         setEmail={setEmail}
         phoneMask={setMask}
+        phoneName={'phone'}
+        emailName={'email'}
+        errorPhone={error.phone}
+        errorEmail={error.email}
+        validateField={validateField}
+        requiredValidation={requiredValidation}
       />
 
       <BirthdayInput
@@ -144,11 +172,17 @@ const FirstPage = ({ infosForms, setInfosForms, setPage }) => {
         setMonth={handleMonth}
         setYear={handleYear}
         setAge={setAge}
+        dayName={'day'}
+        monthName={'month'}
+        yearName={'year'}
+        errorBirthday={error.birthday}
+        validateField={validateField}
+        requiredValidation={requiredValidation}
       />
 
       <Checkbox data={infosForms.check} checked={check} setCheck={setCheck} />
 
-      <Button>
+      <Button disabled={JSON.stringify(error).includes(false)}>
         <p>Next</p>
         <ChevronRight size={20} />
       </Button>
