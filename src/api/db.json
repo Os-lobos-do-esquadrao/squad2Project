@@ -1,0 +1,107 @@
+{
+  "users": [
+    {
+      "fullName": "Davi Teixeira",
+      "nickName": "Nickname",
+      "email": "davi@furg.br",
+      "phone": "(53) 99977-0522",
+      "date": {
+        "day": "10",
+        "month": "12",
+        "year": "1998",
+        "age": 22
+      },
+      "birthday": "10/12/1998",
+      "check": true,
+      "linkedin": "https://www.linkedin.com/in/davilt/",
+      "github": "https://github.com/DaviLemos",
+      "certificateList": [],
+      "teamName": "teamName",
+      "institution": "Universidade Federal do Rio Grande (FURG)",
+      "graduation": "Engenharia da Computação",
+      "id": 1
+    },
+    {
+      "fullName": "Davi de Lemos Teixeira",
+      "nickName": "Manito",
+      "email": "davi@furg.br",
+      "phone": "",
+      "date": {
+        "day": "10",
+        "month": "12",
+        "year": "1998",
+        "age": 22
+      },
+      "birthday": "10/12/1998",
+      "check": true,
+      "github": "https://github.com/DaviLemos",
+      "certificateList": [
+        [
+          "https://cursos.alura.com.br/certificate/67daff28-4c50-455b-9a1b-4bfdf7b88caf",
+          true
+        ],
+        [
+          "https://cursos.alura.com.br/certificate/67daff28-4c50-455b-9a1b-4bfdf7b88caf",
+          true
+        ],
+        [
+          "https://cursos.alura.com.br/certificate/67daff28-4c50-455b-9a1b-4bfdf7b88caf",
+          true
+        ],
+        [
+          "https://cursos.alura.com.br/certificate/67daff28-4c50-455b-9a1b-4bfdf7b88caf",
+          true
+        ],
+        [
+          "https://cursos.alura.com.br/certificate/67daff28-4c50-455b-9a1b-4bfdf7b88caf",
+          false
+        ]
+      ],
+      "teamName": "TeamName",
+      "institution": "Universidade Federal do Rio Grande (FURG)",
+      "graduation": "Engenharia da Computação",
+      "id": 2
+    },
+    {
+      "fullName": "Davi de Lemos Teixeira",
+      "nickName": "Manito",
+      "email": "davi@furg.br",
+      "phone": "",
+      "date": {
+        "day": "10",
+        "month": "12",
+        "year": "1998",
+        "age": 22
+      },
+      "birthday": "10/12/1998",
+      "check": true,
+      "github": "https://github.com/DaviLemos",
+      "certificateList": [
+        [
+          "https://cursos.alura.com.br/certificate/67daff28-4c50-455b-9a1b-4bfdf7b88caf",
+          true
+        ],
+        [
+          "https://cursos.alura.com.br/certificate/67daff28-4c50-455b-9a1b-4bfdf7b88caf",
+          true
+        ],
+        [
+          "https://cursos.alura.com.br/certificate/67daff28-4c50-455b-9a1b-4bfdf7b88caf",
+          true
+        ],
+        [
+          "https://cursos.alura.com.br/certificate/67daff28-4c50-455b-9a1b-4bfdf7b88caf",
+          true
+        ],
+        [
+          "https://cursos.alura.com.br/certificate/67daff28-4c50-455b-9a1b-4bfdf7b88caf",
+          false
+        ]
+      ],
+      "teamName": "TeamName",
+      "institution": "Universidade Federal do Rio Grande (FURG)",
+      "graduation": "Engenharia da Computação",
+      "id": 3
+    }
+  ]
+}

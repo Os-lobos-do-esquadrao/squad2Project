@@ -1,9 +1,11 @@
 // * React * //
-import React from 'react';
+import React, { useEffect } from 'react';
 // * Redux * //
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actions from '../store/actions';
+// * API * //
+import api from '../api/api';
 // * Template * //
 import {
   TableBox,
@@ -20,7 +22,10 @@ import { Button } from '../components/Buttons/ButtonTemplate';
 // * Icon * //
 import { ChevronRight, Heart } from 'react-feather';
 
-const FourthPage = ({ infosForms, setPage, reset, theme }) => {
+const FourthPage = ({ infosForms, setPage, reset }) => {
+  useEffect(() => {
+    api.addData(infosForms);
+  });
   return (
     <TableBox>
       <Table>

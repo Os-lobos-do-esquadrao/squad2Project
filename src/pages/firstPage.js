@@ -116,7 +116,7 @@ const FirstPage = ({ infosForms, setInfosForms, setPage }) => {
       setBirthday(birthday_aux);
       setCheck(infosForms.check);
     }
-  }, []);
+  });
 
   // * Return * //
   return (
